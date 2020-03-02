@@ -1,6 +1,19 @@
 import React, {useState} from 'react';
-import './App.css';
 import NoteForm from './login';
+import styled from "styled-components";
+
+const TopCard = styled.div`
+  background-color: lightgray;
+  padding: 3%;
+`;
+
+const LoginCard = styled.div`
+  background-color: darkgray;
+  display: flex;
+  justify-content: space-evenly;
+  text-decoration: none;
+`;
+
 
 
 function LoginForm() {
@@ -19,9 +32,16 @@ function LoginForm() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Login In</h1>
+        <TopCard>
+          <h1>AirBnB Optimal Price</h1>
+          <h3>Login In</h3>
 
-        <NoteForm login={login}/>
+          <LoginCard>
+            <NoteForm login={login}/>
+          </LoginCard>
+          
+        </TopCard>
+        
       </header>
     </div>
   );
