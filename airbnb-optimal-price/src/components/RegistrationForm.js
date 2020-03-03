@@ -27,7 +27,7 @@ const RegistrationForm = props => {
           passError = "passwords must match";
         } else if ( user.password.length < 6) {
             passError = "password must be 6 characters"
-        } else if (user.password.includes(specialCharTest) === true) {
+        } else if (user.password.includes(specialCharTest || '  ') === true) {
             passError = "passwords cannot contain spaces or special characters"
         }
     
@@ -46,7 +46,7 @@ const RegistrationForm = props => {
             console.log(user)
             setUser({email: '', password: '', passwordConfirm: '', passError: ''})
         }
-        
+
     }
 
 

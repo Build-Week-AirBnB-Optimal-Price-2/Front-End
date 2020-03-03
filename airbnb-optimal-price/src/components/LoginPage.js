@@ -7,55 +7,35 @@ import './LoginPage.css'
 
 
 
+const Tab = styled.div `
+overflow: hidden;
+border-bottom: 1px #470B97 solid;
+background-color: #f1f1f1;
+`
+
+
+
+
+
 const LoginPage = props => {
 
-    const Tab = styled.div `
-    overflow: hidden;
-    border: 1px solid #ccc;
-    background-color: #f1f1f1;
-    `
-    const Button = styled.button`
-        background-color: inherit;
-        float: left;
-        border: none;
-        outline: none;
-        cursor: pointer;
-        padding: 14px 16px;
-        transition: 0.3s;
+    const [active, setActive] = useState(true)
 
-        &:hover{
-            background-color: #ddd;
-        }
-        &.active{
-            background-color: #ccc;
-        }
-    `
-
-// const openCity = (evt, name) => {
-//     var i, tabcontent, tablinks;
-//     tabcontent = document.getElementsByClassName("tabcontent");
-//     for (i = 0; i < tabcontent.length; i++) {
-//       tabcontent[i].style.display = "none";
-//     }
-//     tablinks = document.getElementsByClassName("tablinks");
-//     for (i = 0; i < tablinks.length; i++) {
-//       tablinks[i].className = tablinks[i].className.replace(" active", "");
-//     }
-//     document.getElementById(name).style.display = "block";
-//     evt.currentTarget.className += "active";
-// }
+    
 
 return(
     <div>
         
-        <Tab class="tab">
-            <Button className="tablinks" onclick={openCity(event, 'login')}>Login</Button>
-            <Button className="tablinks" onclick={openCity(event, 'register')}>Register</Button>
+        <Tab className="tab" >
+            <button className={`Button ${ active ? 'active' : ''}`} onClick={() => setActive(true)} >Login</button>
+            <button className={`Button ${active ? '' : 'active'}`} onClick={() => setActive(false)}>Register</button>
         </Tab>
-
-        <LoginForm id='login' className='tabContent' />
-        <RegistrationForm id='register' className='tabContent' />
-
+        <div className={active ?'activeTab':'tabContent'} >
+        <LoginForm   />
+        </div> 
+        <div className={active ? 'tabContent' : 'activeTab'}>
+        <RegistrationForm />
+        </div>
 
 
     </div>

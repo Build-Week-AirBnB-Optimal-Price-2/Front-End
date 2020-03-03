@@ -19,7 +19,6 @@ const LoginForm = props => {
 
     const submitForm = e => {
         e.preventDefault();
-
             console.log(user)
             setUser({email: '', password: ''})
         
