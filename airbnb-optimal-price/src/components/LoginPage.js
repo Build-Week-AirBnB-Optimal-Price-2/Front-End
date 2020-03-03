@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import RegistrationForm from './RegistrationForm';
-import LoginRegisterToggle from './LoginRegisterToggle';
 import LoginForm from './LoginForm'
 import styled from 'styled-components'
 import './LoginPage.css'

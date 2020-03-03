@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 
 
@@ -6,7 +6,6 @@ const LoginRegisterToggle = props => {
 
 return(
  <div>
-     asdf
  </div>
 )}
 
