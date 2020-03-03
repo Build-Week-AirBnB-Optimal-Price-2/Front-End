@@ -29,7 +29,7 @@ const NoteForm = props => {
       <form onSubmit={submitForm}>
         <div className="formdiv">
           <div className="namestuff">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">Email </label>
             <input
               id="email"
               type="email"
@@ -40,7 +40,7 @@ const NoteForm = props => {
           </div>
           
           <div className="namestuff">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">Password </label>
             <input
               id="password"
               type="password"
