@@ -2,28 +2,55 @@ import React, { useState } from "react";
 
 
 
+
 const RegistrationForm = props => {
 
 
     const [user, setUser] = useState({
         email: '',
         password: '',
-        passwordConfirm: ''
+        passwordConfirm: '',
+        passError: ''
     });
 
     const handleChanges = e => {
         setUser({ ...user, [e.target.name]: e.target.value });
         // console.log(user)
     };
-  
+    
+    const validate = () => {
+        let passError = "";
+        const specialCharRegex = /[\W\s]/g;
+        const specialCharTest = user.password.match(specialCharRegex)
+        console.log(specialCharTest)
+        if (user.password !== user.passwordConfirm) {
+          passError = "passwords must match";
+        } else if ( user.password.length < 6) {
+            passError = "password must be 6 characters"
+        } else if (user.password.includes(specialCharTest) === true) {
+            passError = "passwords cannot contain spaces or special characters"
+        }
+    
+        if (passError) {
+          setUser({...user, passError});
+          return false;
+        }
+    
+        return true;
+      };
 
     const submitForm = e => {
         e.preventDefault();
-        console.log(user)
-        setUser({email: '', password: '', passwordConfirm: ''})
+        const isValid = validate();
+        if(isValid) {
+            console.log(user)
+            setUser({email: '', password: '', passwordConfirm: '', passError: ''})
+        }
+        
     }
 
 
+    
 
     return (
         <div>
@@ -40,7 +67,10 @@ const RegistrationForm = props => {
             </div>
             <div>
             <label htmlFor="passwordConfirm"> Confirm  Password: </label>
-            <input id='passwordConfirm' name='passwordConfirm' type='password' onChange={handleChanges} placeholder='Confirm Password' value={user.password} required />
+            <input id='passwordConfirm' name='passwordConfirm' type='password' onChange={handleChanges} placeholder='Confirm Password' value={user.passwordConfirm} required />
+            </div>
+            <div>
+                {user.passError}
             </div>
             <button type="submit"> Sign-up </button>
         </form>

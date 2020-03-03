@@ -1,7 +1,8 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import RegistrationForm from './components/RegistrationForm';
+
+import LoginPage from './components/LoginPage';
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
         </a>
       </header> */}
 
-      <RegistrationForm />
+      <LoginPage />
     </div>
   );
 }
