@@ -20,16 +20,16 @@
 }
 
 
-.loginCard{background-color: #C0C0C0;
-    border-top: 1px #470B97 solid;
-    border-bottom: 1px #470B97 solid;
-    padding: 2% 0;
-    }
-    
 .activeTab{
 display: block;
 }
 
 .tabContent{
     display: none;
+}
+
+.loginCard{background-color: #C0C0C0;
+border-top: 1px #470B97 solid;
+border-bottom: 1px #470B97 solid;
+padding: 2% 0;
 }
