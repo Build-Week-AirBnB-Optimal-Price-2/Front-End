@@ -1,0 +1,35 @@
+
+  
+.Button{
+    background-color: inherit;
+    float: center;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+
+ 
+    
+}
+.Button:hover{
+    background-color: #ddd;
+}
+.active{
+    background-color: #ccc;
+}
+
+
+.loginCard{background-color: #C0C0C0;
+    border-top: 1px #470B97 solid;
+    border-bottom: 1px #470B97 solid;
+    padding: 2% 0;
+    }
+    
+.activeTab{
+display: block;
+}
+
+.tabContent{
+    display: none;
+}
