@@ -11,6 +11,7 @@ import NoteForm from './LoginForm';
 import styled from "styled-components";
 import RegistrationForm from './RegistrationForm';
 import { Tween, Timeline } from 'react-gsap';
+import './LoginPage.css'
 
 const TopCard = styled.div`
   background-color: #C0C0C0;
@@ -65,11 +66,12 @@ function LoginForm() {
 
               <TopCard>
                 <h1>AirBnB Optimal Price</h1>
-                <h3>Login Here</h3>
+                
   
 
                 <div className={`loginCard ${active ?'activeTab':'tabContent'}`}>
-                     <NoteForm login={login} /> 
+                    <h3>Login Here</h3>
+                    <NoteForm login={login} /> 
                 </div>
                 <div className={`loginCard ${active ?'tabContent':'activeTab'}`}>
                 <RegistrationForm />
