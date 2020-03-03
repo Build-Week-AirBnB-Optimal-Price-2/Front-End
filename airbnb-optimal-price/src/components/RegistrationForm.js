@@ -8,6 +8,7 @@ const RegistrationForm = props => {
     const [user, setUser] = useState({
         email: '',
         password: '',
+        passwordConfirm: ''
     });
 
     const handleChanges = e => {
@@ -19,7 +20,7 @@ const RegistrationForm = props => {
     const submitForm = e => {
         e.preventDefault();
         console.log(user)
-        setUser({email: '', password: ''})
+        setUser({email: '', password: '', passwordConfirm: ''})
     }
 
 
@@ -36,6 +37,10 @@ const RegistrationForm = props => {
             <div>
             <label htmlFor="Password"> Password: </label>
             <input id='Password' name='password' type='password' onChange={handleChanges} placeholder='Password' value={user.password} required />
+            </div>
+            <div>
+            <label htmlFor="passwordConfirm"> Confirm  Password: </label>
+            <input id='passwordConfirm' name='passwordConfirm' type='password' onChange={handleChanges} placeholder='Confirm Password' value={user.password} required />
             </div>
             <button type="submit"> Sign-up </button>
         </form>
