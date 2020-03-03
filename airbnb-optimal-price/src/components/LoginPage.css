@@ -1,13 +1,4 @@
-.tabContent{
-    display: none;
-    max-width: 800px;
-    margin: auto 0px;
-    padding: 6px 12px;
-    border: 1px solid #ccc;
-    border-top: none;
 
-
-}
   
 .Button{
     background-color: inherit;
@@ -24,12 +15,21 @@
 .Button:hover{
     background-color: #ddd;
 }
-
-.activeTab{
-display: block;
-}
-
 .active{
     background-color: #ccc;
 }
 
+
+.loginCard{background-color: #C0C0C0;
+    border-top: 1px #470B97 solid;
+    border-bottom: 1px #470B97 solid;
+    padding: 2% 0;
+    }
+    
+.activeTab{
+display: block;
+}
+
+.tabContent{
+    display: none;
+}
