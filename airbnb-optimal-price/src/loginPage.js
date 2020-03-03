@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import NoteForm from './login';
 import styled from "styled-components";
+import { Tween, Timeline } from 'react-gsap';
 
 const TopCard = styled.div`
   background-color: #C0C0C0;
@@ -17,7 +18,6 @@ const LoginCard = styled.div`
 `;
 
 
-
 function LoginForm() {
   const [memberValues, setMemberValues] = useState([]);
 
@@ -31,23 +31,44 @@ function LoginForm() {
       setMemberValues([...memberValues, newMember]);
   };
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <TopCard>
-          <h1>AirBnB Optimal Price</h1>
-          <h3>Login Here</h3>
 
-          <LoginCard>
-            <NoteForm login={login}/>
-          </LoginCard>
-          
-        </TopCard>
-        
-      </header>
-    </div>
+
+  const TimelineComponent = () => (
+    <Timeline
+      target={
+        <div>
+          <div className="App">
+            <header className="App-header">
+              <TopCard>
+                <h1>AirBnB Optimal Price</h1>
+                <h3>Login Here</h3>
+  
+                <LoginCard>
+                  <NoteForm login={login}/>
+                </LoginCard>
+                
+              </TopCard>
+              
+            </header>
+          </div>
+        </div>
+      }
+    >
+
+      <Tween from={{ x: '-20px', opacity: .5 }} to={{ x: '0px' }} />
+      <Tween from={{ opacity: .5 }} to={{ opacity: 1 }} />
+    </Timeline>
+  );
+  
+
+  return ( 
+    <div>
+      <TimelineComponent></TimelineComponent>   
+    </div>   
+
   );
 }
 
 
 export default LoginForm;
+
