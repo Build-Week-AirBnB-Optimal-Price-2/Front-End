@@ -5,3 +5,97 @@
 //LoginForm
 //RegistrationForm
 //LoginRegisterToggle
+
+import React, {useState} from 'react';
+import LoginForm from './LoginForm';
+import styled from "styled-components";
+import RegistrationForm from './RegistrationForm';
+import { Tween, Timeline } from 'react-gsap';
+import './LoginPage.css'
+
+const TopCard = styled.div`
+  background-color: #C0C0C0;
+  padding: 3%;
+  color: #470B97;
+  border-radius: 10px;
+
+`;
+
+// const LoginCard = styled.div`
+//   background-color: #C0C0C0;
+//   border-top: 1px #470B97 solid;
+//   border-bottom: 1px #470B97 solid;
+//   padding: 2% 0;
+// `;
+
+
+const Tab = styled.div `
+overflow: hidden;
+background-color:  #C0C0C0;
+width: 100%;
+`
+
+function LoginPage() {
+  const [memberValues, setMemberValues] = useState([]);
+
+  const [active, setActive] = useState(true)
+
+  const login = member => {
+      const newMember = {
+          email: member.email,
+          password: member.password
+
+      };
+
+      setMemberValues([...memberValues, newMember]);
+  };
+
+  const TimelineComponent = () => (
+    <Timeline
+      target={
+        <div>
+          <div className="App">
+            <header className="App-header">
+
+              <TopCard>
+                <h1>AirBnB Optimal Price</h1>
+                
+                <div className={`loginCard ${active ?'activeTab':'tabContent'}`}>
+                    <h5>Login Here</h5>
+                    
+                    <div className="login">
+                      <LoginForm login={login} /> 
+                    </div>
+                  
+                </div>
+                <div className={`loginCard ${active ?'tabContent':'activeTab'}`}>
+                    <RegistrationForm />
+                </div> 
+              </TopCard>
+            </header>
+          </div>
+        </div>
+      }
+    >
+
+      <Tween from={{ x: '-20px', opacity: .5 }} to={{ x: '0px' }} />
+      <Tween from={{ opacity: .5 }} to={{ opacity: 1 }} />
+    </Timeline>
+  );
+  
+
+  return ( 
+    <div className='container'>
+        <Tab className="tab" >
+            <button className={`Button ${ active ? 'active' : ''}`} onClick={() => setActive(true)} >Login</button>
+            <button className={`Button ${active ? '' : 'active'}`} onClick={() => setActive(false)}>Register</button>
+        </Tab>
+        <TimelineComponent></TimelineComponent>   
+        <p>	&#9400; 2020, AirBnB Optimal Price</p>
+    </div>   
+
+  );
+}
+
+
+export default LoginPage;
