@@ -50,7 +50,7 @@ const LoginForm = props => {
                 type="email"
                 name="email"
                 onChange={handleChanges}
-                placeholder=' E-mail'
+                placeholder=' E-Mail'
                 value={note.email}
               />
             </div>
