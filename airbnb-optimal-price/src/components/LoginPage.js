@@ -7,7 +7,7 @@
 //LoginRegisterToggle
 
 import React, {useState} from 'react';
-import NoteForm from './LoginForm';
+import LoginForm from './LoginForm';
 import styled from "styled-components";
 import RegistrationForm from './RegistrationForm';
 import { Tween, Timeline } from 'react-gsap';
@@ -34,7 +34,7 @@ border-bottom: 1px #470B97 solid;
 background-color: #f1f1f1;
 `
 
-function LoginForm() {
+function LoginPage() {
   const [memberValues, setMemberValues] = useState([]);
 
   const [active, setActive] = useState(true)
@@ -71,7 +71,7 @@ function LoginForm() {
 
                 <div className={`loginCard ${active ?'activeTab':'tabContent'}`}>
                     <h3>Login Here</h3>
-                    <NoteForm login={login} /> 
+                    <LoginForm login={login} /> 
                 </div>
                 <div className={`loginCard ${active ?'tabContent':'activeTab'}`}>
                 <RegistrationForm />

@@ -10,7 +10,7 @@ import React, {useState} from 'react';
 
 
 
-const NoteForm = props => {
+const LoginForm = props => {
     // console.log("props", props);
     const [note, setNote] = useState({
       email: "",
@@ -64,5 +64,5 @@ const NoteForm = props => {
     );
 };
   
-export default NoteForm;
+export default LoginForm;
   
