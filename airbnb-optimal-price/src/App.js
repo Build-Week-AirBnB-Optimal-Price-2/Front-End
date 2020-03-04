@@ -1,12 +1,17 @@
 import React from 'react';
 import './App.css';
-import LoginForm from './components/LoginPage';
+// import LoginPage from './components/LoginPage';
+import Dashboard from './components/DashboardPage';
+import LoginPage from './components/LoginPage';
+import { Route } from 'react-router-dom';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-       <LoginForm />
+        <Route exact path='/components/DashboardPage' component={Dashboard}/>
+
+        <Route exact path='/components/LoginPage' component={LoginPage}/>
       </header>
     </div>
   );
@@ -15,3 +20,5 @@ function App() {
 export default App;
 
 //testing
+
+// <LoginPage />

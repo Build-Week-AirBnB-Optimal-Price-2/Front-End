@@ -6,3 +6,9 @@
 //[ Waiting to hear from the data science team ]
 //submit button
 //back button (return to dashboard with no submission)
+
+import React from 'react';
+
+const AddProperty = () => <h1>Im on the AddPropertyPage</h1>;
+
+export default AddProperty;

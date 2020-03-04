@@ -58,8 +58,6 @@ const RegistrationForm = props => {
     }
 
 
-    
-
     return (
         <div>
 

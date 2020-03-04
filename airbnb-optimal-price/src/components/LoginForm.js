@@ -7,10 +7,29 @@
 //submit button
 
 import React, {useState} from 'react';
+import styled from "styled-components";
+
+const FormInput = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+// const InputForm = styled.div`
+//   // background-color: #C0C0C0;
+//   // padding: 3%;
+//   // color: #470B97;
+//   // border-radius: 10px;
+//   display: flex;
+//   // flex-direction: column;
+//   justify-content: flex-start;
+//   width: 100%;
+//   border: 1px red solid;
+
+// `;
 
 
 
-const NoteForm = props => {
+const LoginForm = props => {
     // console.log("props", props);
     const [note, setNote] = useState({
       email: "",
@@ -37,25 +56,40 @@ const NoteForm = props => {
       <form onSubmit={submitForm}>
         <div className="formdiv">
           <div className="namestuff">
-            <label htmlFor="email">Email </label>
-            <input
-              id="email"
-              type="email"
-              name="email"
-              onChange={handleChanges}
-              value={note.email}
-            />
+            <FormInput>
+              <label htmlFor="email">Email </label>
+    
+              <div className="inputForm">
+                <input
+                  id="email"
+                  type="email"
+                  name="email"
+                  onChange={handleChanges}
+                  placeholder=' E-mail'
+                  value={note.email}
+                />
+              </div>
+
+
+            </FormInput>
           </div>
           
           <div className="namestuff">
-            <label htmlFor="password">Password </label>
-            <input
-              id="password"
-              type="password"
-              name="password"
-              onChange={handleChanges}
-              value={note.password}
-            />
+          <FormInput>
+              <label htmlFor="password">Password </label>
+
+              <div className="inputForm">
+                <input
+                  id="password"
+                  type="password"
+                  name="password"
+                  onChange={handleChanges}
+                  placeholder=' Password'
+                  value={note.password}
+                />
+              </div>
+
+            </FormInput>
           </div>
 
           <button type="submit">Login</button>
@@ -64,5 +98,5 @@ const NoteForm = props => {
     );
 };
   
-export default NoteForm;
+export default LoginForm;
   

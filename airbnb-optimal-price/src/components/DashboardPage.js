@@ -4,3 +4,24 @@
 //components contained in this page:
 //Navbar
 //PropertyCardList
+
+import React from 'react';
+import Navigation from './Navbar';
+import AddProperty from './AddPropertyPage';
+// import LoginPage from './LoginPage';
+// import { AddProperty, LoginPage, Navigation } from './components';
+import { Route } from 'react-router-dom';
+
+function Dashboard() {
+    return (
+      <div>
+        <Navigation />
+
+        <Route exact path='/components/AddPropertyPage' component={AddProperty}/>
+    
+
+      </div>
+    );
+  }
+  
+  export default Dashboard;
