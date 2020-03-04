@@ -90,8 +90,8 @@ function LoginPage() {
             <button className={`Button ${ active ? 'active' : ''}`} onClick={() => setActive(true)} >Login</button>
             <button className={`Button ${active ? '' : 'active'}`} onClick={() => setActive(false)}>Register</button>
         </Tab>
-
         <TimelineComponent></TimelineComponent>   
+        <p>	&#9400; 2020, AirBnB Optimal Price</p>
     </div>   
 
   );

@@ -10,7 +10,6 @@ function App() {
     <div className="App">
       <header className="App-header">
         <Route exact path='/components/DashboardPage' component={Dashboard}/>
-
         <Route exact path='/components/LoginPage' component={LoginPage}/>
       </header>
     </div>
