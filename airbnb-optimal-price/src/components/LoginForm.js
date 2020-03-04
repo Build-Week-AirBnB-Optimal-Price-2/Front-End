@@ -9,8 +9,15 @@
 import React, { useState } from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { useHistory } from "react-router-dom";
+import styled from "styled-components";
 
-const NoteForm = props => {
+const FormInput = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
+
+const LoginForm = props => {
   let history = useHistory();
   const [note, setNote] = useState({
     email: "",
@@ -45,31 +52,47 @@ const NoteForm = props => {
     <form onSubmit={submitForm}>
       <div className="formdiv">
         <div className="namestuff">
-          <label htmlFor="email">Email </label>
-          <input
-            id="email"
-            type="email"
-            name="email"
-            onChange={handleChanges}
-            value={note.email}
-          />
+          <FormInput>
+            <label htmlFor="email">Email </label>
+  
+            <div className="inputForm">
+              <input
+                id="email"
+                type="email"
+                name="email"
+                onChange={handleChanges}
+                placeholder=' E-Mail'
+                value={note.email}
+              />
+            </div>
+          </FormInput>
         </div>
-
+        
         <div className="namestuff">
-          <label htmlFor="password">Password </label>
-          <input
-            id="password"
-            type="password"
-            name="password"
-            onChange={handleChanges}
-            value={note.password}
-          />
+        <FormInput>
+            <label htmlFor="password">Password </label>
+
+            <div className="inputForm">
+              <input
+                id="password"
+                type="password"
+                name="password"
+                onChange={handleChanges}
+                placeholder=' Password'
+                value={note.password}
+              />
+            </div>
+
+          </FormInput>
         </div>
 
-        <button type="submit">Login</button>
+        <div className="buttonL">
+          <button type="submit">Login</button>
+        </div>
       </div>
     </form>
   );
 };
-
-export default NoteForm;
+  
+export default LoginForm;
+  

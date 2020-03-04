@@ -7,7 +7,7 @@
 //LoginRegisterToggle
 
 import React, {useState} from 'react';
-import NoteForm from './LoginForm';
+import LoginForm from './LoginForm';
 import styled from "styled-components";
 import RegistrationForm from './RegistrationForm';
 import { Tween, Timeline } from 'react-gsap';
@@ -18,6 +18,7 @@ const TopCard = styled.div`
   padding: 3%;
   color: #470B97;
   border-radius: 10px;
+
 `;
 
 // const LoginCard = styled.div`
@@ -30,11 +31,11 @@ const TopCard = styled.div`
 
 const Tab = styled.div `
 overflow: hidden;
-border-bottom: 1px #470B97 solid;
-background-color: #f1f1f1;
+background-color:  #C0C0C0;
+width: 100%;
 `
 
-function LoginForm() {
+function LoginPage() {
   const [memberValues, setMemberValues] = useState([]);
 
   const [active, setActive] = useState(true)
@@ -49,8 +50,6 @@ function LoginForm() {
       setMemberValues([...memberValues, newMember]);
   };
 
-
-
   const TimelineComponent = () => (
     <Timeline
       target={
@@ -58,27 +57,21 @@ function LoginForm() {
           <div className="App">
             <header className="App-header">
 
-            <Tab className="tab" >
-                <button className={`Button ${ active ? 'active' : ''}`} onClick={() => setActive(true)} >Login</button>
-                <button className={`Button ${active ? '' : 'active'}`} onClick={() => setActive(false)}>Register</button>
-            </Tab>
-
-
               <TopCard>
                 <h1>AirBnB Optimal Price</h1>
                 
-  
-
                 <div className={`loginCard ${active ?'activeTab':'tabContent'}`}>
-                    <h3>Login Here</h3>
-                    <NoteForm login={login} /> 
+                    <h5>Login Here</h5>
+                    
+                    <div className="login">
+                      <LoginForm login={login} /> 
+                    </div>
+                  
                 </div>
                 <div className={`loginCard ${active ?'tabContent':'activeTab'}`}>
-                <RegistrationForm />
-                </div>
-                
+                    <RegistrationForm />
+                </div> 
               </TopCard>
-              
             </header>
           </div>
         </div>
@@ -92,12 +85,17 @@ function LoginForm() {
   
 
   return ( 
-    <div>
-      <TimelineComponent></TimelineComponent>   
+    <div className='container'>
+        <Tab className="tab" >
+            <button className={`Button ${ active ? 'active' : ''}`} onClick={() => setActive(true)} >Login</button>
+            <button className={`Button ${active ? '' : 'active'}`} onClick={() => setActive(false)}>Register</button>
+        </Tab>
+        <TimelineComponent></TimelineComponent>   
+        <p>	&#9400; 2020, AirBnB Optimal Price</p>
     </div>   
 
   );
 }
 
 
-export default LoginForm;
+export default LoginPage;

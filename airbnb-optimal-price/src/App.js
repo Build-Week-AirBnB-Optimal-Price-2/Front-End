@@ -10,7 +10,7 @@ import LoginPage from './components/LoginPage'
 import DashboardPage from './components/DashboardPage'
 import AddPropertyPage from './components/AddPropertyPage'
 import './App.css';
-import LoginForm from './components/LoginPage';
+
 
 const store = createStore(reducer, applyMiddleware(thunk))
 
