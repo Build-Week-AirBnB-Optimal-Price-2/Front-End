@@ -6,3 +6,13 @@
 //[ Waiting to hear from the data science team ]
 //submit button
 //back button (return to dashboard with no submission)
+
+import React from 'react'
+
+const AddPropertyPage = props => {
+    return (
+        <>Under Construction</>
+    )
+}
+
+export default AddPropertyPage;

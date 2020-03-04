@@ -4,3 +4,12 @@
 //components contained in this page:
 //Navbar
 //PropertyCardList
+ import React from 'react'
+
+ const DashboardPage = props => {
+    return (
+        <>Success!</>
+    )
+ }
+
+ export default DashboardPage;
