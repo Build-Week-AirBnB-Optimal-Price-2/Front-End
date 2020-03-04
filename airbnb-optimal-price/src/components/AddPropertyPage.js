@@ -92,7 +92,7 @@ const AddProperty = props => {
     return (
 
         <div>
-            <Link to='/dashboard'>return</Link>
+            <Link to='/home'>return</Link>
    
             <form onSubmit={submitForm}>
              <label htmlFor="name"> Name: </label>
@@ -203,7 +203,7 @@ const AddProperty = props => {
              <label htmlFor='smokingAllowed'> Smoking Allowed: </label>
              <input id='smokingAllowed' type='checkbox' name='smokingAllowed' onchange={handleChanges} placeholder ='Smoking Allowed' value={property.smokingAllowed} />
              <br/>
-             <label htmlFor='instantBookable'> Instant Bookable: </label>
+             <label htmlFor='instantBookable'> Instantly Bookable: </label>
              <input id='instantBookable' type='checkbox' name='instantBookable' onchange={handleChanges} placeholder ='Instant Bookable' value={property.instantBookable} />
              <br/>
              <label htmlFor='businessReady'> Business Ready?: </label>

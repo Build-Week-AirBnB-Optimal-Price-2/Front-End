@@ -7,8 +7,7 @@
 //submit button
 
 import React, { useState } from "react";
-
-
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 
 const RegistrationForm = props => {
@@ -50,37 +49,53 @@ const RegistrationForm = props => {
     const submitForm = e => {
         e.preventDefault();
         const isValid = validate();
+        const userCredentials = { username: user.email, password: user.password }
         if(isValid) {
-            console.log(user)
-            setUser({email: '', password: '', passwordConfirm: '', passError: ''})
+            // console.log(user)
+            axiosWithAuth()
+                .post('/auth/register', userCredentials)
+                .then(res => {
+                    console.log(res)
+                    //registration success message here?
+                })
+                .catch( err => console.log(err) )
+            // setUser({email: '', password: '', passwordConfirm: '', passError: ''})
         }
 
     }
 
 
-    
-
     return (
         <div>
 
-        <h2>Register New User</h2>
+        <h5>Register New User</h5>
         <form onSubmit={submitForm}>
-            <div>
-            <label htmlFor="email"> E-Mail: </label>
-            <input id='email' type='email' name='email' onChange={handleChanges} placeholder='E-Mail' value={user.email} required />
+            <div className="namestuff">
+                <label htmlFor="email"> E-Mail: </label>
+                <div className="inputForm">
+                    <input id='email' type='email' name='email' onChange={handleChanges} placeholder=' E-Mail' value={user.email} required />
+                </div>
+                
             </div>
-            <div>
-            <label htmlFor="Password"> Password: </label>
-            <input id='Password' name='password' type='password' onChange={handleChanges} placeholder='Password' value={user.password} required />
+            <div className="namestuff">
+                <label htmlFor="Password"> Password: </label>
+                <div className="inputForm">
+                    <input id='Password' name='password' type='password' onChange={handleChanges} placeholder=' Password' value={user.password} required />
+                </div>
             </div>
-            <div>
-            <label htmlFor="passwordConfirm"> Confirm  Password: </label>
-            <input id='passwordConfirm' name='passwordConfirm' type='password' onChange={handleChanges} placeholder='Confirm Password' value={user.passwordConfirm} required />
+            <div className="namestuff">
+                <label htmlFor="passwordConfirm"> Confirm  Password: </label>
+                <div className="inputForm">
+                    <input id='passwordConfirm' name='passwordConfirm' type='password' onChange={handleChanges} placeholder=' Confirm Password' value={user.passwordConfirm} required />
+                </div>
             </div>
             <div>
                 {user.passError}
             </div>
-            <button type="submit"> Sign-up </button>
+
+            <div className="buttonL">
+                <button type="submit"> Sign-up </button>
+            </div>
         </form>
 
         </div>
