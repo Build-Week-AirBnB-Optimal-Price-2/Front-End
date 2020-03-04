@@ -7,6 +7,6 @@ export const axiosWithAuth = () => {
         headers: {
             authorization: token
         },
-        baseURL: 'http://lambdaairbnb.herokuapp.com'
+        baseURL: 'https://lambdaairbnb.herokuapp.com'
     });
 };
