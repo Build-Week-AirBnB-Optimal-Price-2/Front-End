@@ -6,7 +6,9 @@
 //password
 //submit button
 
-import React, {useState} from 'react';
+import React, { useState } from "react";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
 const FormInput = styled.div`
@@ -16,15 +18,15 @@ const FormInput = styled.div`
 `;
 
 const LoginForm = props => {
-  // console.log("props", props);
+  let history = useHistory();
   const [note, setNote] = useState({
     email: "",
-    password: "",
+    password: ""
   });
 
   const handleChanges = e => {
-  //   console.log(note);
-  
+    //   console.log(note);
+
     setNote({
       ...note,
       [e.target.name]: e.target.value
@@ -33,8 +35,17 @@ const LoginForm = props => {
 
   const submitForm = e => {
     e.preventDefault();
-    props.login(note);
-    setNote({ email: "", password: ""});
+    // props.login(note);
+    // setNote({ email: "", password: ""});
+    const userCredentials = { username: note.email, password: note.password };
+    console.log(userCredentials);
+    axiosWithAuth()
+      .post("/auth/login", userCredentials)
+      .then(res => {
+        console.log(res);
+        window.localStorage.setItem("token", res.data.payload);
+        history.push("/home");
+      });
   };
 
   return (

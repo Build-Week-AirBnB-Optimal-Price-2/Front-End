@@ -10,8 +10,8 @@ const Navigation = () => {
       <div className="NavBar">
         <h1>AirBnB Optimal Price</h1>        
       
-        <Link to='/components/AddPropertyPage'>New Property</Link>
-        <Link to='/components/LoginPage'>Logout</Link>
+        <Link to='/new-property'>New Property</Link>
+        <Link to='/'>Logout</Link>
       </div>
     </div>
   );

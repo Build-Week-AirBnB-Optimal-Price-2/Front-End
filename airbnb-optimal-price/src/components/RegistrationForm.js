@@ -7,6 +7,7 @@
 //submit button
 
 import React, { useState } from "react";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 
 const RegistrationForm = props => {
@@ -48,9 +49,17 @@ const RegistrationForm = props => {
     const submitForm = e => {
         e.preventDefault();
         const isValid = validate();
+        const userCredentials = { username: user.email, password: user.password }
         if(isValid) {
-            console.log(user)
-            setUser({email: '', password: '', passwordConfirm: '', passError: ''})
+            // console.log(user)
+            axiosWithAuth()
+                .post('/auth/register', userCredentials)
+                .then(res => {
+                    console.log(res)
+                    //registration success message here?
+                })
+                .catch( err => console.log(err) )
+            // setUser({email: '', password: '', passwordConfirm: '', passError: ''})
         }
 
     }

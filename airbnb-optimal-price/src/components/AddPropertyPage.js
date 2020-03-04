@@ -7,8 +7,12 @@
 //submit button
 //back button (return to dashboard with no submission)
 
-import React from 'react';
+import React from 'react'
 
-const AddProperty = () => <h1>Im on the AddPropertyPage</h1>;
+const AddPropertyPage = props => {
+    return (
+        <>Under Construction</>
+    )
+}
 
-export default AddProperty;
+export default AddPropertyPage;
