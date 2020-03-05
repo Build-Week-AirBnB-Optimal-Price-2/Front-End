@@ -5,10 +5,10 @@
 import React, { useState } from "react";
 import PropertyCard from "./PropertyCard";
 import { UPDATE_PROPERTIES } from "../actions";
-import EditCard from "./EditCard"
+
 
 function PropertyCardList() {
-  const [property, setProperty] = useState([
+  const [property] = useState([
     {
       id: 1,
       name: 'Comfy Loft in Mitte',
@@ -34,33 +34,26 @@ function PropertyCardList() {
           neighborhood: 'Mitte',
       }
   ]);
-  const addNewProperty = newProp => {
+  // const addNewProperty = newProp => {
       
-    const newProperty = {
-      id: Date.now(),
-      name: newProp.name,
-      propertyType: newProp.propertyType,
-      accomodates: newProp.accomodates,
-      bathrooms: newProp.bathrooms,
-      size: newProp.size,
-      distance: newProp.distance,
-      minimumNights: newProp.minimumNights,
-      propertyType: newProp.propertyType,
-      roomType: newProp.roomType,
-      neighborhood: newProp.neighborhood,
-    };
-    setProperty([...property, newProperty])
-  }
+  //   const newProperty = {
+  //     id: Date.now(),
+  //     name: newProp.name,
+  //     propertyType: newProp.propertyType,
+  //     accomodates: newProp.accomodates,
+  //     bathrooms: newProp.bathrooms,
+  //     size: newProp.size,
+  //     distance: newProp.distance,
+  //     minimumNights: newProp.minimumNights,
+  //     roomType: newProp.roomType,
+  //     neighborhood: newProp.neighborhood,
+  //   };
+  //   setProperty([...property, newProperty])
+  // }
 
 
   return (
     <div>
-
-    
-            {/* <Route path={`/editCard/:listingID`}> 
-              <EditCard property = {property} /> */}
-            
-           
             {property.map(e => (
                 <PropertyCard property ={e} />
                 ))}

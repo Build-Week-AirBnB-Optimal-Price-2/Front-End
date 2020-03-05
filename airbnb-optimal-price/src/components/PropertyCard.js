@@ -13,7 +13,7 @@ import {Link} from "react-router-dom"
 const PropertyCard = props => {
     // console.log(props)
   return (
-        <div >
+        <div id={props.property.id} >
           <h2>{props.property.name}</h2>
 
           <p>Accomodates {props.property.accomodates}</p>
@@ -24,14 +24,12 @@ const PropertyCard = props => {
           <p>Property Type: {props.property.propertyType}</p>
           <p>Room Type: {props.property.roomType}</p>
           <p>Located in: {props.property.neighborhood}</p>
-
-          <Link to={`/editCard/${props.property.id}`} >
+          <div>
+          <Link to={`/new-property/${props.property.id}`} >
             <button>Edit</button>
           </Link>
-          {/* <Route path={`/editCard`}> 
-              <EditCard property = {props.property} />
-          </Route> */}
-
+          <button> Delete </button>
+          </div>
             
         </div>
 

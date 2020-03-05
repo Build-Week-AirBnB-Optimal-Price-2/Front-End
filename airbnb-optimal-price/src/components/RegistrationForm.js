@@ -12,12 +12,13 @@ import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 const RegistrationForm = props => {
 
-
+    console.log(props)
     const [user, setUser] = useState({
         email: '',
         password: '',
         passwordConfirm: '',
-        passError: ''
+        passError: '',
+        successMess: ''
     });
 
     const handleChanges = e => {
@@ -58,8 +59,13 @@ const RegistrationForm = props => {
                     console.log(res)
                     //registration success message here?
                 })
-                .catch( err => console.log(err) )
-            setUser({email: '', password: '', passwordConfirm: '', passError: ''})
+                .catch( err => console.log(err) );
+            let successMess = 'Registration Successful'
+            setUser({...user, successMess})
+            setTimeout(() => {
+               props.setActive(true) 
+            }, 1000)
+            
         }
 
     }
@@ -91,6 +97,7 @@ const RegistrationForm = props => {
             </div>
             <div>
                 {user.passError}
+                {user.successMess}
             </div>
 
             <div className="buttonL">

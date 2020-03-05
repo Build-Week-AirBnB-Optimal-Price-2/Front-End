@@ -10,6 +10,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import LoginPage from "./components/LoginPage";
 import DashboardPage from "./components/DashboardPage";
 import AddPropertyPage from "./components/AddPropertyPage";
+
 import "./App.css";
 
 const store = createStore(reducer, applyMiddleware(thunk));
@@ -22,7 +23,7 @@ function App() {
           <Switch>
             <Route exact path="/" component={LoginPage} />
             <PrivateRoute path="/home" component={DashboardPage} />
-            <PrivateRoute path="/new-property" component={AddPropertyPage} />
+            <PrivateRoute path="/new-property/:listingID" component={AddPropertyPage} />
           </Switch>
         </div>
       </Provider>

@@ -8,7 +8,7 @@
 //back button (return to dashboard with no submission)
 
 import React, { useState } from "react";
-import {Link} from 'react-router-dom'
+import {Link, useParams} from 'react-router-dom'
 import styled from "styled-components";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { connect } from "react-redux";
@@ -34,36 +34,43 @@ const InnerPropInput = styled.div`
 
 
 const AddProperty = props => {
+    console.log(props)
+    const {listingID} = useParams('/editCard/:listingID')
+    const listingInfo = '';
+    // const listingInfo = props.property.find(info => listingID === `${info.id}`);
+
+
+
     const [property, setProperty] = useState({
-        name: '',
-        id: Date.now(),
+        name: listingInfo.name || '',
+        id: listingID || Date.now(),
         user_id: props.userId,
-        latitude: '',
-        longitude: '',
-        accomodates: '',
-        bathrooms: '',
-        size: '',
-        distance: '',
-        securityDeposit: '',
-        cleaningFee: '',
-        guestsIncluded: '',
-        extraPeople: '',
-        minimumNights: '',
-        cancellationPolicy: 0,
-        propertyType: 0,
-        roomType: 0,
-        bedType: 0,
-        neighborhood: 0,
-        tv: false,
-        wifi: false,
-        washer: false,
-        dryer: false,
-        kitchen: false,
-        heating: false,
-        freeParking: false,
-        smokingAllowed: false,
-        instantBookable: false,
-        businessReady: false,
+        latitude: listingInfo.latitude || '',
+        longitude: listingInfo.longitude || '',
+        accomodates: listingInfo.accomodates || '',
+        bathrooms: listingInfo.bathrooms || '',
+        size: listingInfo.size || '',
+        distance: listingInfo.distance || '',
+        securityDeposit: listingInfo.securityDeposit || '',
+        cleaningFee: listingInfo.cleaningFee || '',
+        guestsIncluded: listingInfo.guestsIncluded || '',
+        extraPeople: listingInfo.extraPeople || '',
+        minimumNights: listingInfo.minimumNights || '',
+        cancellationPolicy: listingInfo.cancellationPolicy || 0,
+        propertyType: listingInfo.propertyType || 0,
+        roomType: listingInfo.roomType || 0,
+        bedType: listingInfo.bedType || 0,
+        neighborhood: listingInfo.neighborhood || 0,
+        tv: listingInfo.tv || false,
+        wifi: listingInfo.wifi || false,
+        washer: listingInfo.washer || false,
+        dryer: listingInfo.dryer || false,
+        kitchen: listingInfo.kitchen || false,
+        heating: listingInfo.heating || false,
+        freeParking: listingInfo.freeParking || false,
+        smokingAllowed: listingInfo.smokingAllowed || false,
+        instantBookable: listingInfo.instantBookable || false,
+        businessReady: listingInfo.businessReady || false,
         numError: ''
     });
     const handleSelectChanges = e => {
@@ -83,22 +90,6 @@ const AddProperty = props => {
 
     
 
-    const validate = () => {
-        let numError = "";
-
-        property.map( e => {
-            if ( e > 6 || e < 1) {
-                numError = `${e} needs to be between 1 and 6`
-            } 
-        
-            if (numError) {
-              setProperty({...property, numError});
-              return false;
-            } else {return true;}
-        })
-       
-      };
-
 
 
 
@@ -106,13 +97,10 @@ const AddProperty = props => {
     const submitForm = e => {
         e.preventDefault();
         console.log(property)
-        const isValid = validate();
-        if(isValid) {
             axiosWithAuth()
             .post(`/data/input/${property.id}`, property)
             .then(res => console.log(res))
-        .catch(err => console.log(err));
-        }
+            .catch(err => console.log(err));
 
     }
 
@@ -126,10 +114,13 @@ const AddProperty = props => {
         <div className='return'>
             <Link to='/home'>return</Link>
         </div>
-
+            
         <PropInput>
             <InnerPropInput>  
+                
                 <form onSubmit={submitForm}>
+                <label>{property.id}</label>
+                <br/>
                 <label htmlFor="name"> Name: </label>
                 <input id='name' type='text' name='name' onChange={handleChanges} placeholder='Name' value={property.name} required/>
                 <br/>
@@ -168,50 +159,50 @@ const AddProperty = props => {
                 <br/>
                 <label htmlFor="cancellationPolicy"> Cancellation Policy:</label>
                 <select  id='cancellationPolicy' name='cancellationPolicy' onChange={handleSelectChanges} value={property.cancellationPolicy} required>
-                    <option value='0'>Strict 14 with grace period</option>
-                    <option value='1'>Flexible</option>
-                    <option value='2'>Moderate</option>
-                    <option value='3' >Super Strict 30</option>
-                    <option value='4'>Super Strict 30</option>
+                    <option value='0' name='Strict 14 with grace period'>Strict 14 with grace period</option>
+                    <option value='1' name='Flexible'>Flexible</option>
+                    <option value='2' name='Moderate'>Moderate</option>
+                    <option value='3' name='Super Strict 30'>Super Strict 30</option>
+                    <option value='4' name='Super Strict 30'>Super Strict 30</option>
                 </select>
                 <br/>
                 <label htmlFor="propertyType"> Property Type:</label>
                 <select  id='propertyType' name='propertyType' onChange={handleSelectChanges} value={property.propertyType} required>
-                    <option value='0'>Guest House</option>
-                    <option value='1'>Apartment</option>
-                    <option value='2'>Condo</option>
-                    <option value='3'>House</option>
-                    <option value='4'>Other</option>
+                    <option value='0' name='Guest House'>Guest House</option>
+                    <option value='1' name='Apartment'>Apartment</option>
+                    <option value='2' name='Condo'>Condo</option>
+                    <option value='3' name='House'>House</option>
+                    <option value='4' name='Other'>Other</option>
                 </select>
                 <br/>
                 <label htmlFor="roomType"> Room Type:</label>
                 <select  id='roomType' name='roomType' onChange={handleSelectChanges} value={property.roomType} required>
-                    <option value='0' >Private Room</option>
-                    <option value='1'>Entire House/Apt</option>
-                    <option value='2'>Shared Room</option>
+                    <option value='0' name='Private Room' >Private Room</option>
+                    <option value='1' name='Entire House/Apt'>Entire House/Apt</option>
+                    <option value='2' name='Shared Room'>Shared Room</option>
                 </select>
                 <br/>
                 <label htmlFor="bedType"> Bed Type:</label>
                 <select  id='bedType' name='bedType' onChange={handleSelectChanges} value={property.bedType} required>
-                    <option value='0'>Real Bed</option>
-                    <option value='1'>Pullout Sofa</option>
-                    <option value='2'>Other</option>
+                    <option value='0' name='Real Bed'>Real Bed</option>
+                    <option value='1' name='Pullout Sofa'>Pullout Sofa</option>
+                    <option value='2' name='Other'>Other</option>
                 </select>
                 <br/>
                 <label htmlFor="neighbourhood"> Neighbourhood:</label>
                 <select id='neighbourhood' name='neighbourhood' onChange={handleSelectChanges} value={property.neighborhood} required>
-                    <option value='0'>Friedrichshain Kreuzberg</option>
-                    <option value='1'>Mitte</option>
-                    <option value='2'>Pankow</option>
-                    <option value='3'>Neukölln</option>
-                    <option value='4'>Charlottenburg-Wilm</option>
-                    <option value='5'>Tempelhof - Schöneberg</option>
-                    <option value='6'>Lichtenberg</option>
-                    <option value='7'>Treptow - Köpenick</option>
-                    <option value='8'>Steglitz - Zehlendorf</option>
-                    <option value='9'>Reinickendorf</option>
-                    <option value='10'>Marzahn - Hellersdorf</option>
-                    <option value='11'>Spandau</option>
+                    <option value='0' name='Friedrichshain Kreuzberg'>Friedrichshain Kreuzberg</option>
+                    <option value='1' name='Mitte'>Mitte</option>
+                    <option value='2' name='Pankow'>Pankow</option>
+                    <option value='3' name='Neukölln'>Neukölln</option>
+                    <option value='4' name='Charlottenburg-Wilm'>Charlottenburg-Wilm</option>
+                    <option value='5' name='Tempelhof - Schöneberg'>Tempelhof - Schöneberg</option>
+                    <option value='6' name='Lichtenberg'>Lichtenberg</option>
+                    <option value='7' name='Treptow - Köpenick'>Treptow - Köpenick</option>
+                    <option value='8' name='Steglitz - Zehlendorf'>Steglitz - Zehlendorf</option>
+                    <option value='9' name='Reinickendorf'>Reinickendorf</option>
+                    <option value='10' name='Marzahn - Hellersdorf'>Marzahn - Hellersdorf</option>
+                    <option value='11' name='Spandau'>Spandau</option>
                 </select>
                 <br/>
                 <label htmlFor='tv'> TV: </label>
