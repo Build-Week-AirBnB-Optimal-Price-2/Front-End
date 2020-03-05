@@ -60,6 +60,9 @@ function PropertyCardList() {
     <div>
 
         <Switch>
+            <Route path={`/editCard/:listingID`}> 
+              <EditCard property = {property} />
+            </Route>
             <Route path='/home'>
             {property.map(e => (
                 <PropertyCard property ={e} />
@@ -68,9 +71,7 @@ function PropertyCardList() {
             <Route path='/AddPropertyPage'>
                  <AddProperty  />
             </Route>
-            <Route path={`/editCard/:listingID`}> 
-              <EditCard property = {property} />
-            </Route>
+            
            
         </Switch>
     </div>

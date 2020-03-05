@@ -4,7 +4,7 @@ import {Link, useParams} from 'react-router-dom'
 
 
 const EditCard = props => {
-    const {listingID} = useParams()
+    const {listingID} = useParams('/editCard/:listingID')
 
     const listingInfo = props.property.find(info => listingID === `${info.id}`);
 
