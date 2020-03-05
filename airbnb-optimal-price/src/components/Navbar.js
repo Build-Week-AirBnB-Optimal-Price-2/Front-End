@@ -3,15 +3,52 @@
 //create buttons for each of those actions
 import React from 'react';
 import {Link} from 'react-router-dom';
+import styled from "styled-components";
+
+const TopNav = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+
+`;
+
+const CompanyName = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  padding: 0 0 0 2%;
+  width: 100%;
+  color: #c0c0c0;
+`;
+
+const NavList = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 50%;
+  text-decoration: none;
+`;
 
 const Navigation = () => {
   return (
     <div>
       <div className="NavBar">
-        <h1>AirBnB Optimal Price</h1>        
-      
-        <Link to='/new-property'>New Property</Link>
-        <Link to='/'>Logout</Link>
+        <TopNav>
+          <CompanyName>
+            <h1>AirBnB Optimal Price</h1>   
+          </CompanyName>
+     
+          <NavList>
+            <div className='linky'>
+              <Link to='/new-property'>New Property</Link>
+            </div>
+
+            <div className='linky'>
+              <Link to='/'>Logout</Link>
+            </div>
+
+          </NavList>
+        </TopNav>
       </div>
     </div>
   );

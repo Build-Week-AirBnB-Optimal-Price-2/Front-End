@@ -8,6 +8,7 @@
 import React from 'react';
 import Navigation from './Navbar';
 import AddProperty from './AddPropertyPage';
+import PropertyCardList from './PropertyCardList';
 // import LoginPage from './LoginPage';
 // import { AddProperty, LoginPage, Navigation } from './components';
 import { Route } from 'react-router-dom';
@@ -17,6 +18,7 @@ function Dashboard() {
       <div>
         <Navigation />
 
+        <PropertyCardList/>
         <Route exact path='/components/AddPropertyPage' component={AddProperty}/>
     
 

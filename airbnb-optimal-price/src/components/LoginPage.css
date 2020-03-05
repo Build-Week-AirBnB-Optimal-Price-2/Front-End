@@ -1,5 +1,10 @@
+.toggle {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
 
-  
+
 .Button{
     background-color: inherit;
     float: center;
@@ -8,9 +13,10 @@
     cursor: pointer;
     padding: 14px 16px;
     transition: 0.3s;
-    width: 50%;
+    width: 100%;
     font-size: 2rem;
     color: #470B97;
+    
     
 }
 .Button:hover{
@@ -21,6 +27,7 @@
     color: #C0C0C0;
     border-left:2px #C0C0C0 solid;
     border-right:2px #C0C0C0 solid;
+    border-top:2px #C0C0C0 solid;
 }
 .active:hover{
     background-color: #470B97;
@@ -36,6 +43,10 @@ display: block;
 
 .tabContent{
     display: none;
+}
+
+.container {
+    background-color: #470B97;
 }
 
 .loginCard{
@@ -59,6 +70,7 @@ display: block;
 .container p {
     font-size: .9rem;
     position: relative;
+    color: #C0C0C0;
 }
 
 /* loginform stuff */

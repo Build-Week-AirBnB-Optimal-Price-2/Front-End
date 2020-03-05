@@ -29,7 +29,7 @@ function PropertyCardList() {
   return (
     <div>
         <Switch>
-            <Route path='/dashboard'>
+            <Route path='/home'>
             <PropertyCard property ={property} />
             </Route>
             <Route path='/AddPropertyPage'>
