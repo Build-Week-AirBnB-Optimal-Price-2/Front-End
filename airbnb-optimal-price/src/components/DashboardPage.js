@@ -5,23 +5,33 @@
 //Navbar
 //PropertyCardList
 
-import React from 'react';
-import Navigation from './Navbar';
-import AddProperty from './AddPropertyPage';
-// import LoginPage from './LoginPage';
-// import { AddProperty, LoginPage, Navigation } from './components';
-import { Route } from 'react-router-dom';
+import React, { useEffect } from "react";
+import Navbar from "./Navbar";
+import { connect } from "react-redux";
+import { getData } from "../actions";
 
-function Dashboard() {
-    return (
-      <div>
-        <Navigation />
+import PropertyCardList from "./PropertyCardList";
 
-        <Route exact path='/components/AddPropertyPage' component={AddProperty}/>
-    
+const DashboardPage = props => {
+  useEffect(() => {
+    props.getData(props.userId);
+  }, [props.updateProperties]);
+  return (
+    <div>
+      <Navbar />
+      <PropertyCardList />
+    </div>
+  );
+};
 
-      </div>
-    );
-  }
-  
-  export default Dashboard;
+const mapStateToProps = state => {
+  return {
+    userId: state.userId,
+    properties: state.properties,
+    error: state.error,
+    isFetchingData: state.isFetchingData,
+    updateProperties: state.updateProperties
+  };
+};
+
+export default connect(mapStateToProps, { getData })(DashboardPage);

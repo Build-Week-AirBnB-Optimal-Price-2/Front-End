@@ -10,6 +10,8 @@ import React, { useState } from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
+import { connect } from "react-redux";
+import { setUserId } from "../actions";
 
 const FormInput = styled.div`
   display: flex;
@@ -35,14 +37,12 @@ const LoginForm = props => {
 
   const submitForm = e => {
     e.preventDefault();
-    // props.login(note);
-    // setNote({ email: "", password: ""});
     const userCredentials = { username: note.email, password: note.password };
-    console.log(userCredentials);
     axiosWithAuth()
       .post("/auth/login", userCredentials)
       .then(res => {
         console.log(res);
+        props.setUserId(res.data.user.id);
         window.localStorage.setItem("token", res.data.payload);
         history.push("/home");
       });
@@ -54,22 +54,22 @@ const LoginForm = props => {
         <div className="namestuff">
           <FormInput>
             <label htmlFor="email">Email </label>
-  
+
             <div className="inputForm">
               <input
                 id="email"
                 type="email"
                 name="email"
                 onChange={handleChanges}
-                placeholder=' E-Mail'
+                placeholder=" E-Mail"
                 value={note.email}
               />
             </div>
           </FormInput>
         </div>
-        
+
         <div className="namestuff">
-        <FormInput>
+          <FormInput>
             <label htmlFor="password">Password </label>
 
             <div className="inputForm">
@@ -78,11 +78,10 @@ const LoginForm = props => {
                 type="password"
                 name="password"
                 onChange={handleChanges}
-                placeholder=' Password'
+                placeholder=" Password"
                 value={note.password}
               />
             </div>
-
           </FormInput>
         </div>
 
@@ -93,6 +92,9 @@ const LoginForm = props => {
     </form>
   );
 };
-  
-export default LoginForm;
-  
+
+const mapStateToProps = state => {
+  return {};
+};
+
+export default connect(mapStateToProps, { setUserId })(LoginForm);
