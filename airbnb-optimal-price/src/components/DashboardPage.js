@@ -15,11 +15,20 @@ import { connect } from 'react-redux';
 import { getData } from '../actions';
 
 const PropCardStyle = styled.div`
+<<<<<<< HEAD
+  // display: flex;
+  // justify-content: center;
+  width: 100%;
+  background-color: #C0C0C0;
+  color: #470B97;
+  margin: 1%;
+=======
   display: flex;
   justify-content: center;
   width: 50%;
   background-color: #c0c0c0;
   color: #470b97;
+>>>>>>> bca6d8813d6cc3d3073d7c9820259660ca87f558
   border-radius: 10px;
 `;
 
