@@ -59,7 +59,7 @@ const RegistrationForm = props => {
                     //registration success message here?
                 })
                 .catch( err => console.log(err) )
-            // setUser({email: '', password: '', passwordConfirm: '', passError: ''})
+            setUser({email: '', password: '', passwordConfirm: '', passError: ''})
         }
 
     }

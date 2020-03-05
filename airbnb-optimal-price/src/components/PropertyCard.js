@@ -7,19 +7,34 @@
 
 
 import React from "react";
+import {Link} from "react-router-dom"
+
 
 const PropertyCard = props => {
     // console.log(props)
   return (
-    <div>
-      {props.property.map(property => (
-        <div key={property.id}>
-          <h2>{property.name}</h2>
-          <p>{property.propertyType}</p>
-          <p>{property.price}</p>
+        <div >
+          <h2>{props.property.name}</h2>
+
+          <p>Accomodates {props.property.accomodates}</p>
+          <p>Has {props.property.bathrooms} Bathrooms</p>
+          <p>Square Feet: {props.property.size}</p>
+          <p>{props.property.distance} from Berlin Center</p>
+          <p>Minimum Nights: {props.property.minimumNights}</p>
+          <p>Property Type: {props.property.propertyType}</p>
+          <p>Room Type: {props.property.roomType}</p>
+          <p>Located in: {props.property.neighborhood}</p>
+
+          <Link to={`/editCard/${props.property.id}`} >
+            <button>Edit</button>
+          </Link>
+          {/* <Route path={`/editCard`}> 
+              <EditCard property = {props.property} />
+          </Route> */}
+
+            
         </div>
-      ))}
-    </div>
+
   );
 };
 
