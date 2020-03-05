@@ -6,11 +6,16 @@
 //password
 //submit button
 
-import React, { useState } from "react";
-import { axiosWithAuth } from "../utils/axiosWithAuth";
-
+import React, { useState } from 'react';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 const RegistrationForm = props => {
+  // const [user, setUser] = useState({
+  //   email: '',
+  //   password: '',
+  //   passwordConfirm: '',
+  //   passError: ''
+  // });
 
     console.log(props)
     const [user, setUser] = useState({
@@ -71,10 +76,11 @@ const RegistrationForm = props => {
     }
 
 
-    return (
-        <div>
+        
 
-        <h5>Register New User</h5>
+  return (
+    <div>
+     <h5>Register New User</h5>
         <form onSubmit={submitForm}>
             <div className="namestuff">
                 <label htmlFor="email"> E-Mail: </label>
@@ -99,14 +105,13 @@ const RegistrationForm = props => {
                 {user.passError}
                 {user.successMess}
             </div>
-
-            <div className="buttonL">
-                <button type="submit"> Sign-up </button>
-            </div>
-        </form>
-
+        <div className='buttonL'>
+          <button type='submit'> Sign-up </button>
         </div>
-    )
-};
+      </form>
+    </div>
+  );
+}
+
 
 export default RegistrationForm;

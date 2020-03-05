@@ -10,29 +10,29 @@ import React from "react";
 import {Link} from "react-router-dom"
 
 
+
 const PropertyCard = props => {
     // console.log(props)
+
+
   return (
-        <div id={props.property.id} >
-          <h2>{props.property.name}</h2>
+    <div className='dashCard'>
+      <h2>{props.property.name}</h2>
 
-          <p>Accomodates {props.property.accomodates}</p>
-          <p>Has {props.property.bathrooms} Bathrooms</p>
-          <p>Square Feet: {props.property.size}</p>
-          <p>{props.property.distance} from Berlin Center</p>
-          <p>Minimum Nights: {props.property.minimumNights}</p>
-          <p>Property Type: {props.property.propertyType}</p>
-          <p>Room Type: {props.property.roomType}</p>
-          <p>Located in: {props.property.neighborhood}</p>
-          <div>
-          <Link to={`/new-property/${props.property.id}`} >
-            <button>Edit</button>
-          </Link>
-          <button> Delete </button>
-          </div>
-            
-        </div>
+      <p>Accomodates {props.property.accommodates}</p>
+      <p>Has {props.property.bathrooms} Bathrooms</p>
+      <p>Square Feet: {props.property.size}</p>
+      <p>{props.property.distance} from Berlin Center</p>
+      <p>Minimum Nights: {props.property.minimum_nights}</p>
+      <p>Property Type: {props.property.property_type}</p>
+      <p>Room Type: {props.property.room_type}</p>
+      <p>Located in: {props.property.neighbourhood}</p>
 
+      <Link to={`/new-property/${props.property.id}`} >
+        <button>Edit</button>
+      </Link>
+        <button> Delete </button>
+    </div>
   );
 };
 

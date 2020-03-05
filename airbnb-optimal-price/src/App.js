@@ -23,7 +23,7 @@ function App() {
           <Switch>
             <Route exact path="/" component={LoginPage} />
             <PrivateRoute path="/home" component={DashboardPage} />
-            <PrivateRoute path="/new-property/:listingID" component={AddPropertyPage} />
+            <PrivateRoute path="/new-property" component={AddPropertyPage} />
           </Switch>
         </div>
       </Provider>
