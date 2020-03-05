@@ -5,14 +5,14 @@
 //Navbar
 //PropertyCardList
 
-import React from 'react';
-import Navigation from './Navbar';
+import React, {useEffect} from 'react';
+import Navbar from './Navbar';
 import AddProperty from './AddPropertyPage';
 import PropertyCardList from './PropertyCardList';
-// import LoginPage from './LoginPage';
-// import { AddProperty, LoginPage, Navigation } from './components';
 import { Route } from 'react-router-dom';
 import styled from "styled-components";
+import {connect} from "react-redux";
+import {getData} from "../actions";
 
 const PropCardStyle = styled.div`
   display: flex;
@@ -27,10 +27,14 @@ const CopyRight = styled.div`
   color: #C0C0C0;
 `;
 
-function Dashboard() {
+
+const DashboardPage = props => {
+  useEffect(() => {
+    props.getData(props.userId);
+  }, [props.updateProperties]);
     return (
       <div className='dashboard'>
-        <Navigation />
+        <Navbar />
 
         <div className="cardStyle">
           <PropCardStyle>
@@ -48,4 +52,14 @@ function Dashboard() {
     );
   }
   
-  export default Dashboard;
+  const mapStateToProps = state => {
+    return {
+      userId: state.userId,
+      properties: state.properties,
+      error: state.error,
+      isFetchingData: state.isFetchingData,
+      updateProperties: state.updateProperties
+    };
+  };
+
+  export default connect(mapStateToProps, { getData })(DashboardPage);

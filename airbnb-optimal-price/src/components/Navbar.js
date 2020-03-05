@@ -1,9 +1,9 @@
 //This is the element on the DashboardPage that holds buttons for user actions
 //User should be able to logout and create a new property from here
 //create buttons for each of those actions
-import React from 'react';
-import {Link} from 'react-router-dom';
 import styled from "styled-components";
+import React from "react";
+import { Link, useHistory } from "react-router-dom";
 
 const TopNav = styled.div`
   display: flex;
@@ -29,7 +29,15 @@ const NavList = styled.div`
   text-decoration: none;
 `;
 
-const Navigation = () => {
+
+const Navbar = () => {
+  const history = useHistory();
+  const logout = e => {
+    e.preventDefault();
+    window.localStorage.setItem("token", "");
+    history.push("/");
+  };
+
   return (
     <div>
       <div className="NavBar">
@@ -44,7 +52,7 @@ const Navigation = () => {
             </div>
 
             <div className='linky'>
-              <Link to='/'>Logout</Link>
+              <a onClick={logout}>Logout</a>
             </div>
 
           </NavList>
@@ -54,6 +62,4 @@ const Navigation = () => {
   );
 };
 
-export default Navigation;
-
-// <Link to='/'>Home</Link>
+export default Navbar;
