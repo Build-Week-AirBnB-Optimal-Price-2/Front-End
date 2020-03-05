@@ -4,7 +4,8 @@ import {
   SET_ERROR,
   SET_USER,
   OPTIMIZE_PRICE,
-  SET_PRICE
+  SET_PRICE,
+  ADD_PROPERTY
 } from '../actions';
 
 const initialState = {
