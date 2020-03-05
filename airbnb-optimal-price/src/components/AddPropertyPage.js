@@ -99,10 +99,6 @@ const AddProperty = props => {
        
       };
 
-
-
-
-    
     const submitForm = e => {
         e.preventDefault();
         console.log(property)
@@ -113,13 +109,7 @@ const AddProperty = props => {
             .then(res => console.log(res))
         .catch(err => console.log(err));
         }
-
     }
-
-    
-
-        
-
 
   return (
     <div className='addProp'>

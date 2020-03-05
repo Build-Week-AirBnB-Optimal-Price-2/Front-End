@@ -14,8 +14,6 @@ import {Link} from "react-router-dom"
 const PropertyCard = props => {
     // console.log(props)
 
-
-
   return (
     <div className='dashCard'>
       <h2>{props.property.name}</h2>
