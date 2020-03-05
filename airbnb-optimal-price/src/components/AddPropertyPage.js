@@ -8,13 +8,15 @@
 //back button (return to dashboard with no submission)
 
 import React, { useState } from "react";
-import {Link} from 'react-router-dom'
-
-
+import { Link } from "react-router-dom";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
+import { connect } from "react-redux";
 
 const AddProperty = props => {
     const [property, setProperty] = useState({
         name: '',
+        id: Date.now(),
+        user_id: props.userId,
         latitude: '',
         longitude: '',
         accomodates: '',
@@ -82,46 +84,24 @@ const AddProperty = props => {
     
     const submitForm = e => {
         e.preventDefault();
-        // props.addNewProperty(property);
         console.log(property)
         const isValid = validate();
         if(isValid) {
-
-
-            setProperty({ name: '',
-            latitude: 0,
-            longitude: 0,
-            accomodates: 0,
-            bathrooms: 0,
-            size: 0,
-            distance: 0,
-            securityDeposit: 0,
-            cleaningFee: 0,
-            guestsIncluded: 0,
-            extraPeople: 0,
-            minimumNights: 0,
-            cancellationPolicy: 0,
-            propertyType: 0,
-            roomType: 0,
-            bedType: 0,
-            neighborhood: 0,
-            tv: false,
-            wifi: false,
-            washer: false,
-            dryer: false,
-            kitchen: false,
-            heating: false,
-            freeParking: false,
-            smokingAllowed: false,
-            instantBookable: false,
-            businessReady: false})
+            axiosWithAuth()
+            .post(`/data/input/${property.id}`, property)
+            .then(res => console.log(res))
+        .catch(err => console.log(err));
         }
 
     }
 
-    return (
+    
 
-        <div>
+        
+
+
+  return (
+    <div>
             <Link to='/home'>return</Link>
    
             <form onSubmit={submitForm}>
@@ -242,10 +222,13 @@ const AddProperty = props => {
              <button type="submit"> Compare</button>
             </form>
         </div>
-    )
+  );
 };
 
-export default AddProperty;
+const mapStateToProps = state => {
+  return {
+    userId: state.userId
+  };
+};
 
-
-
+export default connect(mapStateToProps, {})(AddProperty);

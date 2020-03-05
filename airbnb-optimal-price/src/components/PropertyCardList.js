@@ -1,14 +1,11 @@
-//This components is a container for PropertyCard components 
+//This components is a container for PropertyCard components
 
-//map through an array of of objects and create a PropertyCard for each 
+//map through an array of of objects and create a PropertyCard for each
 
-
-import React, {useState} from 'react';
-import PropertyCard from './PropertyCard';
-import AddProperty from './AddPropertyPage';
-import {Route, Switch} from 'react-router-dom'
+import React, { useState } from "react";
+import PropertyCard from "./PropertyCard";
+import { UPDATE_PROPERTIES } from "../actions";
 import EditCard from "./EditCard"
-
 
 function PropertyCardList() {
   const [property, setProperty] = useState([
@@ -59,21 +56,15 @@ function PropertyCardList() {
   return (
     <div>
 
-        <Switch>
-            <Route path={`/editCard/:listingID`}> 
-              <EditCard property = {property} />
-            </Route>
-            <Route path='/home'>
+    
+            {/* <Route path={`/editCard/:listingID`}> 
+              <EditCard property = {property} /> */}
+            
+           
             {property.map(e => (
                 <PropertyCard property ={e} />
                 ))}
-            </Route>
-            <Route path='/AddPropertyPage'>
-                 <AddProperty  />
-            </Route>
-            
-           
-        </Switch>
+      
     </div>
   );
 }
