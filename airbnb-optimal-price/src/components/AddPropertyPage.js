@@ -10,12 +10,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import { connect } from "react-redux";
 
 const AddProperty = props => {
   const [property, setProperty] = useState({
     name: "",
-    id: "",
-    user_id: "",
+    id: Date.now(),
+    user_id: props.userId,
     latitude: "",
     longitude: "",
     propertyType: "",
@@ -377,4 +378,10 @@ const AddProperty = props => {
   );
 };
 
-export default AddProperty;
+const mapStateToProps = state => {
+  return {
+    userId: state.userId
+  };
+};
+
+export default connect(mapStateToProps, {})(AddProperty);
