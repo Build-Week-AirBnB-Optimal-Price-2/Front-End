@@ -11,12 +11,13 @@ import AddProperty from './AddPropertyPage';
 // import LoginPage from './LoginPage';
 // import { AddProperty, LoginPage, Navigation } from './components';
 import { Route } from 'react-router-dom';
+import PropertyCardList from './PropertyCardList';
 
 function Dashboard() {
     return (
       <div>
         <Navigation />
-
+        <PropertyCardList />
         <Route exact path='/components/AddPropertyPage' component={AddProperty}/>
     
 
