@@ -6,12 +6,12 @@
 //password
 //submit button
 
-import React, { useState } from "react";
-import { axiosWithAuth } from "../utils/axiosWithAuth";
-import { useHistory } from "react-router-dom";
-import styled from "styled-components";
-import { connect } from "react-redux";
-import { setUserId } from "../actions";
+import React, { useState } from 'react';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
+import { useHistory } from 'react-router-dom';
+import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { setUserId } from '../actions';
 
 const FormInput = styled.div`
   display: flex;
@@ -22,8 +22,8 @@ const FormInput = styled.div`
 const LoginForm = props => {
   let history = useHistory();
   const [note, setNote] = useState({
-    email: "",
-    password: ""
+    email: '',
+    password: ''
   });
 
   const handleChanges = e => {
@@ -39,54 +39,55 @@ const LoginForm = props => {
     e.preventDefault();
     const userCredentials = { username: note.email, password: note.password };
     axiosWithAuth()
-      .post("/auth/login", userCredentials)
+      .post('/auth/login', userCredentials)
       .then(res => {
         console.log(res);
         props.setUserId(res.data.user.id);
-        window.localStorage.setItem("token", res.data.payload);
-        history.push("/home");
+        window.localStorage.setItem('token', res.data.token);
+        window.localStorage.setItem('userId', res.data.user.id);
+        history.push('/home');
       });
   };
 
   return (
     <form onSubmit={submitForm}>
-      <div className="formdiv">
-        <div className="namestuff">
+      <div className='formdiv'>
+        <div className='namestuff'>
           <FormInput>
-            <label htmlFor="email">Email </label>
+            <label htmlFor='email'>Email </label>
 
-            <div className="inputForm">
+            <div className='inputForm'>
               <input
-                id="email"
-                type="email"
-                name="email"
+                id='email'
+                type='email'
+                name='email'
                 onChange={handleChanges}
-                placeholder=" E-Mail"
+                placeholder=' E-Mail'
                 value={note.email}
               />
             </div>
           </FormInput>
         </div>
 
-        <div className="namestuff">
+        <div className='namestuff'>
           <FormInput>
-            <label htmlFor="password">Password </label>
+            <label htmlFor='password'>Password </label>
 
-            <div className="inputForm">
+            <div className='inputForm'>
               <input
-                id="password"
-                type="password"
-                name="password"
+                id='password'
+                type='password'
+                name='password'
                 onChange={handleChanges}
-                placeholder=" Password"
+                placeholder=' Password'
                 value={note.password}
               />
             </div>
           </FormInput>
         </div>
 
-        <div className="buttonL">
-          <button type="submit">Login</button>
+        <div className='buttonL'>
+          <button type='submit'>Login</button>
         </div>
       </div>
     </form>
