@@ -7,6 +7,7 @@ export const SET_ERROR = 'SET_ERROR';
 export const SET_USER = 'SET_USER';
 export const OPTIMIZE_PRICE = 'OPTIMIZE_PRICE';
 export const SET_PRICE = 'SET_PRICE';
+export const SET_PROPERTY_TO_EDIT = 'SET_PROPERTY_TO_EDIT';
 
 export const getData = userId => dispatch => {
   dispatch({ type: FETCH_DATA });
@@ -33,4 +34,8 @@ export const getPrice = property => dispatch => {
 
 export const setUserId = userId => dispatch => {
   dispatch({ type: SET_USER, payload: userId });
+};
+
+export const editProperty = propertyId => dispatch => {
+  dispatch({ type: SET_PROPERTY_TO_EDIT, payload: propertyId });
 };

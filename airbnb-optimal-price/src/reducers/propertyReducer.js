@@ -4,7 +4,8 @@ import {
   SET_ERROR,
   SET_USER,
   OPTIMIZE_PRICE,
-  SET_PRICE
+  SET_PRICE,
+  SET_PROPERTY_TO_EDIT
 } from '../actions';
 
 const initialState = {
@@ -12,7 +13,8 @@ const initialState = {
   properties: [],
   error: '',
   isFetchingData: false,
-  updateProperties: []
+  updateProperties: [],
+  propertyToEdit: -1
 };
 
 export const propertyReducer = (state = initialState, action) => {
@@ -55,6 +57,11 @@ export const propertyReducer = (state = initialState, action) => {
             ? { ...item, price_estimate: action.payload.price }
             : item
         )
+      };
+    case SET_PROPERTY_TO_EDIT:
+      return {
+        ...state,
+        propertyToEdit: action.payload
       };
     default:
       return state;
