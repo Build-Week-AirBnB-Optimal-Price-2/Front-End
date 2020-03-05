@@ -71,7 +71,7 @@ function LoginPage() {
                   
                 </div>
                 <div className={`loginCard ${active ?'tabContent':'activeTab'}`}>
-                    <RegistrationForm />
+                    <RegistrationForm setActive = {setActive} />
                 </div> 
               </TopCard>
             </header>

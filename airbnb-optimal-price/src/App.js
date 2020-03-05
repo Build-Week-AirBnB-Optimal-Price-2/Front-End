@@ -10,6 +10,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import LoginPage from "./components/LoginPage";
 import DashboardPage from "./components/DashboardPage";
 import AddPropertyPage from "./components/AddPropertyPage";
+
 import "./App.css";
 
 const store = createStore(reducer, applyMiddleware(thunk));

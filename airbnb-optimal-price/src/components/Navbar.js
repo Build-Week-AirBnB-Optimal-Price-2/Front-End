@@ -48,7 +48,7 @@ const Navbar = () => {
      
           <NavList>
             <div className='linky'>
-              <Link to='/new-property'>New Property</Link>
+              <Link to={`/new-property`}>New Property</Link>
             </div>
 
             <div className='linky'>

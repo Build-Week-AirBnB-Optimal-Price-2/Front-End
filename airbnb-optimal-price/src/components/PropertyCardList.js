@@ -2,10 +2,8 @@
 
 //map through an array of of objects and create a PropertyCard for each
 
-import React, { useState } from 'react';
+import React from 'react';
 import PropertyCard from './PropertyCard';
-import { UPDATE_PROPERTIES } from '../actions';
-import EditCard from './EditCard';
 import { connect } from 'react-redux';
 import { Tween, Timeline } from 'react-gsap';
 

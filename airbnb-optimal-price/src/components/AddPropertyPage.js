@@ -31,6 +31,7 @@ const InnerPropInput = styled.div`
 `;
 
 const AddProperty = props => {
+
   const [property, setProperty] = useState({
     name: '',
     host_is_superhost: false,
@@ -76,32 +77,14 @@ const AddProperty = props => {
     console.log(property);
   };
 
-  // const validate = () => {
-  //     let numError = "";
-
-  //     property.map( e => {
-  //         if ( e > 6 || e < 1) {
-  //             numError = `${e} needs to be between 1 and 6`
-  //         }
-
-  //         if (numError) {
-  //           setProperty({...property, numError});
-  //           return false;
-  //         } else {return true;}
-  //     })
-
-  //   };
 
   const submitForm = e => {
     e.preventDefault();
     console.log(property);
-    // const isValid = validate();
-    // if(isValid) {
     axiosWithAuth()
       .post(`/data/input/${window.localStorage.getItem('userId')}`, property)
       .then(res => console.log(res))
       .catch(err => console.log(err));
-    // }
   };
 
   return (
@@ -156,7 +139,7 @@ const AddProperty = props => {
               value={property.accommodates}
               required
             />
-            <br />4<label htmlFor='bathrooms'> Bathrooms:</label>
+            <br /><label htmlFor='bathrooms'> Bathrooms:</label>
             <input
               id='bathrooms'
               type='number'
