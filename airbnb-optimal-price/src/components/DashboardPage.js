@@ -12,16 +12,38 @@ import PropertyCardList from './PropertyCardList';
 // import LoginPage from './LoginPage';
 // import { AddProperty, LoginPage, Navigation } from './components';
 import { Route } from 'react-router-dom';
+import styled from "styled-components";
+
+const PropCardStyle = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  background-color: #C0C0C0;
+  color: #470B97;
+  border-radius: 10px;
+`;
+
+const CopyRight = styled.div`
+  color: #C0C0C0;
+`;
 
 function Dashboard() {
     return (
-      <div>
+      <div className='dashboard'>
         <Navigation />
 
-        <PropertyCardList/>
-        <Route exact path='/components/AddPropertyPage' component={AddProperty}/>
-    
+        <div className="cardStyle">
+          <PropCardStyle>
+            <PropertyCardList/>
+          </PropCardStyle>
+        </div>
 
+        <Route exact path='/components/AddPropertyPage' component={AddProperty}/>
+
+        <CopyRight>
+         <p>	&#9400; 2020, AirBnB Optimal Price</p>
+        </CopyRight>
+        
       </div>
     );
   }

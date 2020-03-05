@@ -26,6 +26,7 @@ const InnerPropInput = styled.div`
   background-color: #c0c0c0;
   border-radius: 10px;
   padding: 1% 0;
+  margin: 0 0 2% 0;
 `;
 
 
@@ -236,7 +237,7 @@ const AddProperty = props => {
                 </InnerPropInput>
 
             </PropInput>
-
+            <p>	&#9400; 2020, AirBnB Optimal Price</p>
         </div>
     )
 };

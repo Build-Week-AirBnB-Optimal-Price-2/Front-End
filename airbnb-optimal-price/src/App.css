@@ -63,6 +63,12 @@
   width: 100%;
 }
 
+.addProp p {
+  font-size: .9rem;
+  position: relative;
+  color: #C0C0C0;
+}
+
 .return {
   margin: 1% 0;
 
@@ -90,4 +96,18 @@
   color: #470B97;
   border-radius: 8px;
 
+}
+
+/* dashboard page */
+
+.cardStyle {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 1% 0;
+  margin: 1% 0;
+}
+
+.dashboard {
+  background-color: #470B97;
 }
