@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import PropertyCard from "./PropertyCard";
 import { UPDATE_PROPERTIES } from "../actions";
 import EditCard from "./EditCard"
+import { Tween, Timeline } from 'react-gsap';
 
 function PropertyCardList() {
   const [property, setProperty] = useState([
@@ -32,7 +33,19 @@ function PropertyCardList() {
           propertyType: 'Condo',
           roomType: 'Private Room',
           neighborhood: 'Mitte',
-      }
+      },
+      {
+        id: 3,
+        name: 'Condo in Bitte',
+        accomodates: 2,
+        bathrooms: 2.5,
+        size: 10,
+        distance: 200,
+        minimumNights: 1,
+        propertyType: 'Condo',
+        roomType: 'Private Room',
+        neighborhood: 'Mitte',
+    }
   ]);
   const addNewProperty = newProp => {
       
@@ -52,18 +65,29 @@ function PropertyCardList() {
     setProperty([...property, newProperty])
   }
 
+  const DashboardCardComponent = () => (
+    <Timeline
+      target={
+        <div>
+          {property.map(e => (
+              <PropertyCard property ={e} />
+              ))}
+        </div>
+
+      }
+    >
+      <Tween from={{ x: '50px', opacity: .5 }} to={{ x: '0px' }} />
+      <Tween from={{ opacity: .5 }} to={{ opacity: 1 }} />
+    </Timeline>
+  );
+
 
   return (
     <div>
-
+      <DashboardCardComponent></DashboardCardComponent>
     
             {/* <Route path={`/editCard/:listingID`}> 
               <EditCard property = {property} /> */}
-            
-           
-            {property.map(e => (
-                <PropertyCard property ={e} />
-                ))}
       
     </div>
   );

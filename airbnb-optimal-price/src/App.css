@@ -2,6 +2,7 @@
   text-align: center;
   background-color: #470B97;
   border: 1px #470B97 solid;
+
 }
 
 .App-logo {
@@ -104,10 +105,19 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  padding: 1% 0;
-  margin: 1% 0;
 }
 
 .dashboard {
   background-color: #470B97;
+}
+
+/* PropertyCard.js */
+
+.dashCard {
+  background-color: #470B97;
+  border-radius: 10px;
+  width: 98%;
+  color: #C0C0C0;
+  margin: 1%;
+  padding: 2% 0;
 }

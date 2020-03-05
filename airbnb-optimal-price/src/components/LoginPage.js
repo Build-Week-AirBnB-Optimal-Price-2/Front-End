@@ -94,8 +94,8 @@ function LoginPage() {
         </Tab>
       </div>
 
-        <TimelineComponent></TimelineComponent>   
-        <p>	&#9400; 2020, AirBnB Optimal Price</p>
+      <TimelineComponent></TimelineComponent>   
+      <p>	&#9400; 2020, AirBnB Optimal Price</p>
     </div>   
 
   );
