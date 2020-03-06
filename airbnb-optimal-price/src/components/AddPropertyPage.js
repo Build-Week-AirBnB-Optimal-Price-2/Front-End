@@ -40,7 +40,7 @@ const AddProperty = props => {
     property_type: 0,
     accommodates: '',
     bathrooms: '',
-    bedrooms: '1',
+    bedrooms: 0,
     room_type: 0,
     bed_type: 0,
     size: '',
@@ -68,8 +68,23 @@ const AddProperty = props => {
     setProperty({ ...property, [e.target.name]: valueSelected });
     console.log(e.target.name, valueSelected, property);
   };
+  const handleSelectFloatChanges = e => {
+    const valueSelected = parseFloat(e.target.value);
+    setProperty({ ...property, [e.target.name]: valueSelected });
+    console.log(e.target.name, valueSelected, property);
+  };
   const handleChanges = e => {
     setProperty({ ...property, [e.target.name]: e.target.value });
+    console.log(property);
+  };
+  const handleIntChanges = e => {
+    const valueSelected = parseInt(e.target.value);
+    setProperty({ ...property, [e.target.name]: valueSelected });
+    console.log(property);
+  };
+  const handleFloatChanges = e => {
+    const valueSelected = parseFloat(e.target.value);
+    setProperty({ ...property, [e.target.name]: valueSelected });
     console.log(property);
   };
   const handleCheckChanges = e => {
@@ -107,12 +122,22 @@ const AddProperty = props => {
               required
             />
             <br />
+            <label htmlFor='host_is_superhost'> Super Host: </label>
+            <input
+              id='host_is_superhost'
+              type='checkbox'
+              name='host_is_superhost'
+              onChange={handleCheckChanges}
+              placeholder='host_is_superhost'
+              value={property.host_is_superhost}
+            />
+            <br />
             <label htmlFor='latitude'> Latitude:</label>
             <input
               id='latitude'
               type='number'
               name='latitude'
-              onChange={handleChanges}
+              onChange={handleFloatChanges}
               placeholder='Latitude'
               value={property.latitude}
               required
@@ -123,7 +148,7 @@ const AddProperty = props => {
               id='longitude'
               type='number'
               name='longitude'
-              onChange={handleChanges}
+              onChange={handleFloatChanges}
               placeholder='Longitude'
               value={property.longitude}
               required
@@ -134,19 +159,9 @@ const AddProperty = props => {
               id='accomodates'
               type='number'
               name='accommodates'
-              onChange={handleChanges}
+              onChange={handleIntChanges}
               placeholder='Number can Accomodate'
               value={property.accommodates}
-              required
-            />
-            <br /><label htmlFor='bathrooms'> Bathrooms:</label>
-            <input
-              id='bathrooms'
-              type='number'
-              name='bathrooms'
-              onChange={handleChanges}
-              placeholder='Number of Bathrooms'
-              value={property.bathrooms}
               required
             />
             <br />
@@ -155,7 +170,7 @@ const AddProperty = props => {
               id='size'
               type='number'
               name='size'
-              onChange={handleChanges}
+              onChange={handleFloatChanges}
               placeholder='Size of property'
               value={property.size}
               required
@@ -166,7 +181,7 @@ const AddProperty = props => {
               id='distance'
               type='number'
               name='distance'
-              onChange={handleChanges}
+              onChange={handleFloatChanges}
               placeholder='distance'
               value={property.distance}
               required
@@ -177,7 +192,7 @@ const AddProperty = props => {
               id='securityDeposity'
               type='number'
               name='security_deposit'
-              onChange={handleChanges}
+              onChange={handleFloatChanges}
               placeholder='Security Deposit'
               value={property.security_deposit}
               required
@@ -188,20 +203,9 @@ const AddProperty = props => {
               id='cleaningFee'
               type='number'
               name='cleaning_fee'
-              onChange={handleChanges}
+              onChange={handleFloatChanges}
               placeholder='Cleaning Fees'
               value={property.cleaning_fee}
-              required
-            />
-            <br />
-            <label htmlFor='guestsIncluded'>Guests Included:</label>
-            <input
-              id='guestsIncluded'
-              type='number'
-              name='guests_included'
-              onChange={handleChanges}
-              placeholder='Guests Included'
-              value={property.guests_included}
               required
             />
             <br />
@@ -210,7 +214,7 @@ const AddProperty = props => {
               id='extraPeople'
               type='number'
               name='extra_people'
-              onChange={handleChanges}
+              onChange={handleFloatChanges}
               placeholder='Extra People'
               value={property.extra_people}
               required
@@ -221,11 +225,66 @@ const AddProperty = props => {
               id='minimumNights'
               type='number'
               name='minimum_nights'
-              onChange={handleChanges}
+              onChange={handleIntChanges}
               placeholder='Minimum Nights'
               value={property.minimum_nights}
               required
             />
+            <br />
+            <label htmlFor='bathrooms'> Bathrooms:</label>
+            <select
+              id='bathrooms'
+              name='bathrooms'
+              onChange={handleSelectFloatChanges}
+              value={property.bathrooms}
+              required
+            >
+              <option value='1'>1</option>
+              <option value='1.5'>1.5</option>
+              <option value='2'>2</option>
+              <option value='2.5'>2.5</option>
+              <option value='3'>3</option>
+              <option value='3.5'>3.5</option>
+              <option value='4'>4</option>
+              <option value='4.5'>4.5</option>
+              <option value='5'>5</option>
+            </select>
+            <br />
+            <label htmlFor='bedrooms'> bedrooms:</label>
+            <select
+              id='bedrooms'
+              name='bedrooms'
+              onChange={handleSelectChanges}
+              value={property.bedrooms}
+              required
+            >
+              <option value='1'>1</option>
+              <option value='2'>2</option>
+              <option value='3'>3</option>
+              <option value='4'>4</option>
+              <option value='5'>5</option>
+              <option value='6'>6</option>
+              <option value='7'>7</option>
+              <option value='8'>8</option>
+            </select>
+            <br />
+            <label htmlFor='guests_included'> Guests Included:</label>
+            <select
+              id='guests_included'
+              name='guests_included'
+              onChange={handleSelectChanges}
+              value={property.guests_included}
+              required
+            >
+              <option value='1'>1</option>
+              <option value='2'>2</option>
+              <option value='3'>3</option>
+              <option value='4'>4</option>
+              <option value='5'>5</option>
+              <option value='6'>6</option>
+              <option value='7'>7</option>
+              <option value='8'>8</option>
+            </select>
             <br />
             <label htmlFor='cancellationPolicy'> Cancellation Policy:</label>
             <select
