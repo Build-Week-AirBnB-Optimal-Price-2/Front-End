@@ -17,8 +17,6 @@ import { connect } from 'react-redux';
 import { refreshPropertyList } from '../actions';
 
 const PropertyCard = props => {
-  // console.log(props)
-
   const deleteProperty = () => {
     axiosWithAuth()
       .delete(`/data/${props.property.id}`)
