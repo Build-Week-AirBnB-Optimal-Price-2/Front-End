@@ -10,12 +10,7 @@ import React, { useState } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 const RegistrationForm = props => {
-  // const [user, setUser] = useState({
-  //   email: '',
-  //   password: '',
-  //   passwordConfirm: '',
-  //   passError: ''
-  // });
+
 
     console.log(props)
     const [user, setUser] = useState({
@@ -28,7 +23,6 @@ const RegistrationForm = props => {
 
     const handleChanges = e => {
         setUser({ ...user, [e.target.name]: e.target.value });
-        // console.log(user)
     };
     
     const validate = () => {
