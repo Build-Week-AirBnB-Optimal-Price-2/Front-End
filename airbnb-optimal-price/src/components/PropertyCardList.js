@@ -1,43 +1,60 @@
-//This components is a container for PropertyCard components 
+//This components is a container for PropertyCard components
 
-//map through an array of of objects and create a PropertyCard for each 
+//map through an array of of objects and create a PropertyCard for each
 
-
-import React, {useState} from 'react';
+import React from 'react';
 import PropertyCard from './PropertyCard';
-import AddProperty from './AddPropertyPage';
-import {Route, Switch} from 'react-router-dom'
+import { connect } from 'react-redux';
+import { Tween, Timeline } from 'react-gsap';
 
-function PropertyCardList() {
-  const [property, setProperty] = useState([
-    {
-      id: 1,
-      name: 'Water Side Loft',
-      propertyType: 'Town House',
-      price: '125usd a night'    }
-  ]);
-  const addNewProperty = propertyCarry => {
-      
-    const newProperty = {
-      id: Date.now(),
-      name: propertyCarry.name,
-      propertyType: propertyCarry.propertyType,
-      price: propertyCarry.price
-    };
-    setProperty([...property, newProperty])
-  }
-  return (
-    <div>
-        <Switch>
-            <Route path='/dashboard'>
-            <PropertyCard property ={property} />
-            </Route>
-            <Route path='/AddPropertyPage'>
-                 <AddProperty addNewProperty = {addNewProperty} />
-            </Route>
-        </Switch>
-    </div>
+const PropertyCardList = props => {
+  const DashboardCardComponent = () => (
+    <Timeline
+      target={
+        <div>
+          {props.properties.map(e => (
+            <PropertyCard
+              property={e}
+              refresher={props.refresher}
+              setRefresher={props.setRefresher}
+              key={e.id}
+            />
+          ))}
+        </div>
+      }
+    >
+      <Tween from={{ y: '20px', opacity: 0.5 }} to={{ y: '20px' }} />
+      <Tween from={{ y: '20px', opacity: 0.5 }} to={{ y: '0px', opacity: 1 }} />
+    </Timeline>
   );
-}
 
-export default PropertyCardList;
+  return (
+    <>
+      {!props.error ? (
+        !props.isFetchingData ? (
+          <div>
+            {props.properties.length > 0 ? (
+              <DashboardCardComponent></DashboardCardComponent>
+            ) : (
+              <p>No Properties Added Yet</p>
+            )}
+          </div>
+        ) : (
+          <div>Fetching Data ... </div>
+        )
+      ) : (
+        <div>Error Fetching Data</div>
+      )}
+    </>
+  );
+};
+
+const mapStateToProps = state => {
+  return {
+    properties: state.properties,
+    isFetchingData: state.isFetchingData,
+    error: state.error
+  };
+};
+
+export default connect(mapStateToProps)(PropertyCardList);

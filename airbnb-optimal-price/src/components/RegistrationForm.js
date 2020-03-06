@@ -6,23 +6,23 @@
 //password
 //submit button
 
-import React, { useState } from "react";
-import { axiosWithAuth } from "../utils/axiosWithAuth";
-
+import React, { useState } from 'react';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 const RegistrationForm = props => {
 
 
+    console.log(props)
     const [user, setUser] = useState({
         email: '',
         password: '',
         passwordConfirm: '',
-        passError: ''
+        passError: '',
+        successMess: ''
     });
 
     const handleChanges = e => {
         setUser({ ...user, [e.target.name]: e.target.value });
-        // console.log(user)
     };
     
     const validate = () => {
@@ -58,17 +58,23 @@ const RegistrationForm = props => {
                     console.log(res)
                     //registration success message here?
                 })
-                .catch( err => console.log(err) )
-            // setUser({email: '', password: '', passwordConfirm: '', passError: ''})
+                .catch( err => console.log(err) );
+            let successMess = 'Registration Successful'
+            setUser({...user, successMess})
+            setTimeout(() => {
+               props.setActive(true) 
+            }, 1000)
+            
         }
 
     }
 
 
-    return (
-        <div>
+        
 
-        <h5>Register New User</h5>
+  return (
+    <div>
+     <h5>Register New User</h5>
         <form onSubmit={submitForm}>
             <div className="namestuff">
                 <label htmlFor="email"> E-Mail: </label>
@@ -91,15 +97,15 @@ const RegistrationForm = props => {
             </div>
             <div>
                 {user.passError}
+                {user.successMess}
             </div>
-
-            <div className="buttonL">
-                <button type="submit"> Sign-up </button>
-            </div>
-        </form>
-
+        <div className='buttonL'>
+          <button type='submit'> Sign-up </button>
         </div>
-    )
-};
+      </form>
+    </div>
+  );
+}
+
 
 export default RegistrationForm;

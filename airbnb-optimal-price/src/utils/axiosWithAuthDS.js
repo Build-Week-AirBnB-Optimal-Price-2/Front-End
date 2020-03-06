@@ -1,12 +1,12 @@
 import axios from 'axios';
 
-export const axiosWithAuth = () => {
+export const axiosWithAuthDS = () => {
   const token = window.localStorage.getItem('token');
 
   return axios.create({
     headers: {
       authorization: token
     },
-    baseURL: 'https://lambdaairbnb.herokuapp.com'
+    baseURL: 'https://ds-airbnb.herokuapp.com'
   });
 };

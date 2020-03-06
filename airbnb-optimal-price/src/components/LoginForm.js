@@ -6,10 +6,12 @@
 //password
 //submit button
 
-import React, { useState } from "react";
-import { axiosWithAuth } from "../utils/axiosWithAuth";
-import { useHistory } from "react-router-dom";
-import styled from "styled-components";
+import React, { useState } from 'react';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
+import { useHistory } from 'react-router-dom';
+import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { setUserId } from '../actions';
 
 const FormInput = styled.div`
   display: flex;
@@ -20,8 +22,8 @@ const FormInput = styled.div`
 const LoginForm = props => {
   let history = useHistory();
   const [note, setNote] = useState({
-    email: "",
-    password: ""
+    email: '',
+    password: ''
   });
 
   const handleChanges = e => {
@@ -35,31 +37,30 @@ const LoginForm = props => {
 
   const submitForm = e => {
     e.preventDefault();
-    // props.login(note);
-    // setNote({ email: "", password: ""});
     const userCredentials = { username: note.email, password: note.password };
-    console.log(userCredentials);
     axiosWithAuth()
-      .post("/auth/login", userCredentials)
+      .post('/auth/login', userCredentials)
       .then(res => {
         console.log(res);
-        window.localStorage.setItem("token", res.data.payload);
-        history.push("/home");
+        props.setUserId(res.data.user.id);
+        window.localStorage.setItem('token', res.data.token);
+        window.localStorage.setItem('userId', res.data.user.id);
+        history.push('/home');
       });
   };
 
   return (
     <form onSubmit={submitForm}>
-      <div className="formdiv">
-        <div className="namestuff">
+      <div className='formdiv'>
+        <div className='namestuff'>
           <FormInput>
-            <label htmlFor="email">Email </label>
-  
-            <div className="inputForm">
+            <label htmlFor='email'>Email </label>
+
+            <div className='inputForm'>
               <input
-                id="email"
-                type="email"
-                name="email"
+                id='email'
+                type='email'
+                name='email'
                 onChange={handleChanges}
                 placeholder=' E-Mail'
                 value={note.email}
@@ -67,32 +68,34 @@ const LoginForm = props => {
             </div>
           </FormInput>
         </div>
-        
-        <div className="namestuff">
-        <FormInput>
-            <label htmlFor="password">Password </label>
 
-            <div className="inputForm">
+        <div className='namestuff'>
+          <FormInput>
+            <label htmlFor='password'>Password </label>
+
+            <div className='inputForm'>
               <input
-                id="password"
-                type="password"
-                name="password"
+                id='password'
+                type='password'
+                name='password'
                 onChange={handleChanges}
                 placeholder=' Password'
                 value={note.password}
               />
             </div>
-
           </FormInput>
         </div>
 
-        <div className="buttonL">
-          <button type="submit">Login</button>
+        <div className='buttonL'>
+          <button type='submit'>Login</button>
         </div>
       </div>
     </form>
   );
 };
-  
-export default LoginForm;
-  
+
+const mapStateToProps = state => {
+  return {};
+};
+
+export default connect(mapStateToProps, { setUserId })(LoginForm);
