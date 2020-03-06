@@ -8,10 +8,12 @@
 //back button (return to dashboard with no submission)
 
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import { connect } from 'react-redux';
+import { getPrice } from '../actions';
+import { removeName } from '../utils/removeName';
 
 const PropInput = styled.div`
   display: flex;
@@ -31,7 +33,8 @@ const InnerPropInput = styled.div`
 `;
 
 const AddProperty = props => {
-
+  const history = useHistory();
+  const { propertyId } = useParams();
   const [property, setProperty] = useState({
     name: '',
     host_is_superhost: false,
@@ -39,15 +42,15 @@ const AddProperty = props => {
     longitude: '',
     property_type: 0,
     accommodates: '',
-    bathrooms: '',
-    bedrooms: 0,
+    bathrooms: 1,
+    bedrooms: 1,
     room_type: 0,
     bed_type: 0,
     size: '',
     distance: '',
     security_deposit: '',
     cleaning_fee: '',
-    guests_included: '',
+    guests_included: 1,
     extra_people: '',
     minimum_nights: '',
     cancellation_policy: 0,
@@ -63,6 +66,7 @@ const AddProperty = props => {
     instant_bookable: false,
     is_business_travel_ready: false
   });
+  const withoutName = removeName(property);
   const handleSelectChanges = e => {
     const valueSelected = parseInt(e.target.value);
     setProperty({ ...property, [e.target.name]: valueSelected });
@@ -92,14 +96,35 @@ const AddProperty = props => {
     console.log(property);
   };
 
-
   const submitForm = e => {
+    console.log(propertyId);
+    if (propertyId === '0') {
+      console.log(1);
+      e.preventDefault();
+      console.log(withoutName);
+      axiosWithAuth()
+        .post(`/data/input/${window.localStorage.getItem('userId')}`, property)
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
+      history.push('/home');
+    } else {
+      console.log(2);
+      e.preventDefault();
+      axiosWithAuth()
+        .put(`/data/${propertyId}`, property)
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
+      history.push('/home');
+    }
+  };
+
+  const editProperty = e => {
     e.preventDefault();
-    console.log(property);
     axiosWithAuth()
-      .post(`/data/input/${window.localStorage.getItem('userId')}`, property)
+      .put(`/data/${propertyId}`, property)
       .then(res => console.log(res))
       .catch(err => console.log(err));
+    history.push('/home');
   };
 
   return (
@@ -479,4 +504,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, {})(AddProperty);
+export default connect(mapStateToProps, { getPrice })(AddProperty);

@@ -8,20 +8,23 @@ import { connect } from 'react-redux';
 import { Tween, Timeline } from 'react-gsap';
 
 const PropertyCardList = props => {
-
   const DashboardCardComponent = () => (
     <Timeline
       target={
         <div>
           {props.properties.map(e => (
-              <PropertyCard property ={e} />
-              ))}
+            <PropertyCard
+              property={e}
+              refresher={props.refresher}
+              setRefresher={props.setRefresher}
+              key={e.id}
+            />
+          ))}
         </div>
       }
     >
-      <Tween from={{ y: '20px', opacity: .5 }} to={{ y: '20px' }} />
-      <Tween from={{ y: '20px', opacity: .5 }} to={{ y: '0px', opacity: 1 }} />
-
+      <Tween from={{ y: '20px', opacity: 0.5 }} to={{ y: '20px' }} />
+      <Tween from={{ y: '20px', opacity: 0.5 }} to={{ y: '0px', opacity: 1 }} />
     </Timeline>
   );
 
@@ -31,8 +34,8 @@ const PropertyCardList = props => {
         !props.isFetchingData ? (
           <div>
             {props.properties.length > 0 ? (
-              <DashboardCardComponent></DashboardCardComponent>)
-           : (
+              <DashboardCardComponent></DashboardCardComponent>
+            ) : (
               <p>No Properties Added Yet</p>
             )}
           </div>
