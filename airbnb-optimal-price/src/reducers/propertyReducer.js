@@ -5,7 +5,7 @@ import {
   SET_USER,
   OPTIMIZE_PRICE,
   SET_PRICE,
-  ADD_PROPERTY
+  REFRESH
 } from '../actions';
 
 const initialState = {
@@ -56,6 +56,11 @@ export const propertyReducer = (state = initialState, action) => {
             ? { ...item, price_estimate: action.payload.price }
             : item
         )
+      };
+    case REFRESH:
+      return {
+        ...state,
+        updateProperties: !state.updateProperties
       };
     default:
       return state;

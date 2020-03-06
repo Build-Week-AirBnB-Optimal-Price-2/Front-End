@@ -5,7 +5,7 @@
 //Navbar
 //PropertyCardList
 
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar';
 import PropertyCardList from './PropertyCardList';
 import styled from 'styled-components';
@@ -25,16 +25,17 @@ const CopyRight = styled.div`
 `;
 
 const DashboardPage = props => {
+  const [refresher, setRefresher] = useState(false);
   useEffect(() => {
     props.getData(window.localStorage.getItem('userId'));
-  }, [props.updateProperties]);
+  }, [refresher]);
   return (
     <div className='dashboard'>
       <Navbar />
 
       <div className='cardStyle'>
         <PropCardStyle>
-          <PropertyCardList />
+          <PropertyCardList refresher={refresher} setRefresher={setRefresher} />
         </PropCardStyle>
       </div>
 

@@ -1,12 +1,12 @@
-import axios from "axios";
+import axios from 'axios';
 
 export const axiosWithAuthDS = () => {
-  const token = window.localStorage.getItem("token");
+  const token = window.localStorage.getItem('token');
 
   return axios.create({
     headers: {
       authorization: token
     },
-    baseURL: "" //put path to DS heroku here
+    baseURL: 'https://ds-airbnb.herokuapp.com'
   });
 };

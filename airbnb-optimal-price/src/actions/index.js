@@ -8,6 +8,7 @@ export const SET_USER = 'SET_USER';
 export const OPTIMIZE_PRICE = 'OPTIMIZE_PRICE';
 export const SET_PRICE = 'SET_PRICE';
 export const ADD_PROPERTY = 'ADD_PROPERTY';
+export const REFRESH = 'REFRESH';
 
 export const getData = userId => dispatch => {
   dispatch({ type: FETCH_DATA });
@@ -25,9 +26,10 @@ export const getData = userId => dispatch => {
 export const getPrice = property => dispatch => {
   dispatch({ type: OPTIMIZE_PRICE });
   axiosWithAuthDS()
-    .post('/', property)
+    .post('/predict', property)
     .then(res => {
-      dispatch({ type: SET_PRICE, payload: res.data });
+      console.log(res);
+      // dispatch({ type: SET_PRICE, payload: res.data });
     })
     .catch(err => console.log(err));
 };
@@ -38,4 +40,8 @@ export const setUserId = userId => dispatch => {
 
 export const addProperty = property => dispatch => {
   dispatch({ type: ADD_PROPERTY, payload: property });
+};
+
+export const refreshPropertyList = () => dispatch => {
+  dispatch({ type: REFRESH });
 };
